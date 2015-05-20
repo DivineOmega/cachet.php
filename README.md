@@ -6,6 +6,8 @@ cachet.php is a PHP client library for the Cachet status page (https://cachethq.
 
 This library could be useful for displaying details from your Cachet status page in other systems, such as a monitoring dashboard, a client ticketing system or any other web applications.
 
+If you want to grab cachet.php with Composer, take a look on Packagist: https://packagist.org/packages/divineomega/cachetphp
+
 ## Features
 
 * Retrieval of Cachet elements (all or single)
