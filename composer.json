@@ -1,7 +1,19 @@
 {
     "name": "DivineOmega/CachetPHP",
     "description": "cachet.php is a PHP client library for the Cachet status page",
+    "keywords": [
+        "cachet",
+        "javascript",
+        "js",
+        "library",
+        "api",
+        "cachet",
+        "status",
+        "cachet",
+        "status",
+        "page"
+      ],
     "require": {
-        "php": ">=5.3.0",
+        "php": ">=5.3.0"
     }
 }
