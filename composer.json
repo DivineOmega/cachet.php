@@ -1,0 +1,7 @@
+{
+    "name": "DivineOmega/CachetPHP",
+    "description": "cachet.php is a PHP client library for the Cachet status page",
+    "require": {
+        "php": ">=5.3.0",
+    }
+}
