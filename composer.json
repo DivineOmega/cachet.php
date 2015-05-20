@@ -1,7 +1,7 @@
 {
     "name": "divineomega/cachetphp",
     "description": "cachet.php is a PHP client library for the Cachet status page",
-    "license": "GPL3"
+    "license": "GPL3",
     "keywords": [
         "cachet",
         "javascript",
