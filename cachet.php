@@ -62,7 +62,11 @@ class CachetPHP
         $response = curl_exec($ch);
         curl_close($ch);
         
+        if (!$response) throw new \Exception('cachet.php: No response from '.$url);
+        
         $data = json_decode($response);
+        
+        if (!$data) throw new \Exception('cachet.php: Could not decode JSON from '.$url);
         
         if (isset($data->data) && $data->data)
         {
