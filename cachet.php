@@ -6,6 +6,7 @@ class CachetPHP
     private $baseURL = '';
     private $email = '';
     private $password = '';
+    private $apiVersion = 'v1';
     
     public function __construct()
     {
@@ -25,6 +26,11 @@ class CachetPHP
     public function setPassword($password)
     {
         $this->password = $password;
+    }
+    
+    public function setApiVersion($apiVersion)
+    {
+        $this->apiVersion = $apiVersion;
     }
     
     private function sanityCheck($authorisationRequired)
@@ -52,7 +58,7 @@ class CachetPHP
         
         $this->sanityCheck(false);
         
-        $url = $this->baseURL . $type;
+        $url = $this->baseURL.$this->apiVersion.'/'.$type;
         
         $ch = curl_init($url);
         
@@ -68,7 +74,7 @@ class CachetPHP
         
         if (!$data) throw new \Exception('cachet.php: Could not decode JSON from '.$url);
         
-        if (isset($data->data) && $data->data)
+        if (isset($data->data))
         {
             $data = $data->data;
         }
