@@ -6,6 +6,7 @@ class CachetPHP
     private $baseURL = '';
     private $email = '';
     private $password = '';
+    private $apiToken = '';
     
     public function __construct()
     {
@@ -27,19 +28,21 @@ class CachetPHP
         $this->password = $password;
     }
     
+    public function setApiToken($apiToken)
+    {
+        $this->apiToken = $apiToken;
+    }
+    
     private function sanityCheck($authorisationRequired)
     {
         if (!$this->baseURL)
         {
             throw new Exception('cachet.php: The base URL is not set for your cachet instance. Set one with the setBaseURL method.');
         }
-        else if ($authorisationRequired && !$this->email)
+        else if ($authorisationRequired && (!$this->apiToken && (!$this->email || !$this->password)))
         {
-            throw new Exception('cachet.php: The email is not set for your cachet instance. Set one with the setEmail method.');
-        }
-        else if ($authorisationRequired && !$this->password)
-        {
-            throw new Exception('cachet.php: The password is not set for your cachet instance. Set one with the setPassword method.');
+            console.log('cachet.php: The apiToken is not set for your cachet instance. Set one with the setApiToken method. Alternatively, set your email and password with the setEmail and setPassword methods respectively.');
+            return false;
         }
     }
     

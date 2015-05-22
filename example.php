@@ -9,9 +9,10 @@ $cachetPHP = new CachetPHP();
 // Set the base URL for your Cachet instance API
 $cachetPHP->setBaseURL('https://demo.cachethq.io/api/v1/');
 
-// If you need to change things, you need to provide the email and password you user to log in to the Cachet dashboard
-$cachetPHP->setEmail('test@test.com');
-$cachetPHP->setPassword('test123');
+// If you need to change things, you need to provide your apiToken or the email and password you use to log in to the Cachet dashboard
+$cachetPHP->setApiToken('9yMHsdioQosnyVK4iCVR');
+//$cachetPHP->setEmail('test@test.com');
+//$cachetPHP->setPassword('test123');
 
 // Get components
 $components = $cachetPHP->getComponents();
