@@ -6,7 +6,6 @@ class CachetPHP
     private $baseURL = '';
     private $email = '';
     private $password = '';
-    private $apiVersion = 'v1';
     
     public function __construct()
     {
@@ -26,11 +25,6 @@ class CachetPHP
     public function setPassword($password)
     {
         $this->password = $password;
-    }
-    
-    public function setApiVersion($apiVersion)
-    {
-        $this->apiVersion = $apiVersion;
     }
     
     private function sanityCheck($authorisationRequired)
@@ -58,7 +52,7 @@ class CachetPHP
         
         $this->sanityCheck(false);
         
-        $url = $this->baseURL.$this->apiVersion.'/'.$type;
+        $url = $this->baseURL . $type;
         
         $ch = curl_init($url);
         

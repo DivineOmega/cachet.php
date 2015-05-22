@@ -7,7 +7,7 @@ use DivineOmega\CachetPHP\CachetPHP;
 $cachetPHP = new CachetPHP();
 
 // Set the base URL for your Cachet instance API
-$cachetPHP->setBaseURL('https://demo.cachethq.io/api/');
+$cachetPHP->setBaseURL('https://demo.cachethq.io/api/v1/');
 
 // If you need to change things, you need to provide the email and password you user to log in to the Cachet dashboard
 $cachetPHP->setEmail('test@test.com');
