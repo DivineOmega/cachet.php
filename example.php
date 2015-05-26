@@ -50,4 +50,31 @@ foreach($metrics as $metric)
     echo "\n";
 }
 
+// Get component by ID
+$component = $cachetPHP->getComponentByID(1);
+
+// Display component
+echo '*** Component ID 1 ***';
+echo "\n";
+echo 'Name: '.$component->name;
+echo "\n";
+
+// Get incident by ID
+$incident = $cachetPHP->getIncidentByID(2);
+
+// Display incident
+echo '*** Incident ID 2 ***';
+echo "\n";
+echo 'Name: '.$incident->name;
+echo "\n";
+
+// Get metric by ID
+$metric = $cachetPHP->getMetricByID(1);
+
+// Display metric
+echo '*** Metric ID 1 ***';
+echo "\n";
+echo 'Name: '.$metric->name;
+echo "\n";
+
 ?>

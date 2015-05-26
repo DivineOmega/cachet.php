@@ -79,9 +79,47 @@ class CachetPHP
         return $data;
     }
     
+    private function getByID($type, $id)
+    {
+        if ($type!=='components' && $type!=='incidents' && $type!=='metrics')
+        {
+            throw new \Exception('cachet.php: Invalid type specfied. Must be \'components\', \'incidents\' or \'metrics\'.');
+        }
+        
+        $this->sanityCheck(false);
+        
+        $url = $this->baseURL . $type . '/' . $id;
+        
+        $ch = curl_init($url);
+        
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        
+        $response = curl_exec($ch);
+        curl_close($ch);
+        
+        if (!$response) throw new \Exception('cachet.php: No response from '.$url);
+        
+        $data = json_decode($response);
+        
+        if (!$data) throw new \Exception('cachet.php: Could not decode JSON from '.$url);
+        
+        if (isset($data->data))
+        {
+            $data = $data->data;
+        }
+        
+        return $data;
+    }
+    
     public function getComponents()
     {
         return $this->get('components');
+    }
+    
+    public function getComponentByID($id)
+    {
+        return $this->getByID('components', $id);
     }
     
     public function getIncidents()
@@ -89,8 +127,18 @@ class CachetPHP
         return $this->get('incidents');
     }
     
+    public function getIncidentByID($id)
+    {
+        return $this->getByID('incidents', $id);
+    }
+    
     public function getMetrics()
     {
         return $this->get('metrics');
+    }
+    
+    public function getMetricByID($id)
+    {
+        return $this->getByID('metrics', $id);
     }
 }
