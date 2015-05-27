@@ -58,6 +58,19 @@ echo '*** Component ID 1 ***';
 echo "\n";
 echo 'Name: '.$component->name;
 echo "\n";
+echo 'Status: '.$component->status;
+echo "\n";
+
+// Set component status
+$component = $cachetPHP->setComponentStatusByID(1, 1);
+
+// Display component
+echo '*** Component ID 1 - After status changed to 1 ***';
+echo "\n";
+echo 'Name: '.$component->name;
+echo "\n";
+echo 'Status: '.$component->status;
+echo "\n";
 
 // Get incident by ID
 $incident = $cachetPHP->getIncidentByID(2);
