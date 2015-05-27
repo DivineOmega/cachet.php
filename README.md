@@ -10,7 +10,7 @@ If you want to grab cachet.php with Composer, take a look on Packagist: https://
 
 ## Features
 
-* Retrieval of Cachet elements
+* Retrieval of Cachet elements (all or single)
  * Components
  * Incidents
  * Metrics
