@@ -16,7 +16,7 @@ If you want to grab cachet.php with Composer, take a look on Packagist: https://
  * Metrics
 * Updating of component statuses
 * Sanity checks on all requests
-* Useful PHP exception thrown to aid debugging
+* Useful PHP exceptions thrown to aid debugging
 
 ## Dependencies
 
