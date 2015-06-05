@@ -8,8 +8,13 @@ This library could be useful for displaying details from your Cachet status page
 
 If you want to grab cachet.php with Composer, take a look on Packagist: https://packagist.org/packages/divineomega/cachetphp
 
+## Quick start
+
+See the `example.php` file!
+
 ## Features
 
+* Checking if Cachet instance is working correctly (via [ping](https://docs.cachethq.io/v1.0/docs/ping))
 * Retrieval of Cachet elements (all or single)
  * Components
  * Incidents
