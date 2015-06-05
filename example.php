@@ -14,6 +14,13 @@ $cachetPHP->setApiToken('9yMHsdioQosnyVK4iCVR');
 //$cachetPHP->setEmail('test@test.com');
 //$cachetPHP->setPassword('test123');
 
+// Check if Cachet instance is working correctly
+if ($cachetPHP->isWorking())
+{
+    echo '*** Cachet instance working fine! ***';
+    echo "\n";
+}
+    
 // Get components
 $components = $cachetPHP->getComponents();
 

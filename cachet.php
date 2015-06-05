@@ -46,6 +46,39 @@ class CachetPHP
         }
     }
     
+    public function ping()
+    {
+        $this->sanityCheck(false);
+        
+        $url = $this->baseURL . 'ping';
+        
+        $ch = curl_init($url);
+        
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        
+        $response = curl_exec($ch);
+        curl_close($ch);
+        
+        if (!$response) throw new \Exception('cachet.php: No response from '.$url);
+        
+        $data = json_decode($response);
+        
+        if (!$data) throw new \Exception('cachet.php: Could not decode JSON from '.$url);
+        
+        if (isset($data->data))
+        {
+            $data = $data->data;
+        }
+        
+        return $data;
+    }
+    
+    public function isWorking()
+    {
+        return ($this->ping()=='Pong!');
+    }
+    
     private function get($type)
     {
         if ($type!=='components' && $type!=='incidents' && $type!=='metrics')
