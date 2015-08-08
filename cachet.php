@@ -191,30 +191,30 @@ class CachetPHP
         return $data;
         
     }
-    
-    public function getComponents()
+
+    public function getComponents($sort = null, $order = null)
     {
-        return $this->get('components');
+        return $this->get('components', $sort, $order);
     }
     
     public function getComponentByID($id)
     {
         return $this->getByID('components', $id);
     }
-    
-    public function getIncidents()
+
+    public function getIncidents($sort = null, $order = null)
     {
-        return $this->get('incidents');
+        return $this->get('incidents', $sort, $order);
     }
     
     public function getIncidentByID($id)
     {
         return $this->getByID('incidents', $id);
     }
-    
-    public function getMetrics()
+
+    public function getMetrics($sort = null, $order = null)
     {
-        return $this->get('metrics');
+        return $this->get('metrics', $sort, $order);
     }
     
     public function getMetricByID($id)

@@ -1,10 +1,8 @@
 <?php
 require_once 'cachet.php';
 
-use DivineOmega\CachetPHP\CachetPHP;
-
 // Create a CachetPHP object
-$cachetPHP = new CachetPHP();
+$cachetPHP = new DivineOmega\CachetPHP\cachet();
 
 // Set the base URL for your Cachet instance API
 $cachetPHP->setBaseURL('https://demo.cachethq.io/api/v1/');
@@ -69,7 +67,7 @@ echo 'Status: '.$component->status;
 echo "\n";
 
 // Set component status
-$component = $cachetPHP->setComponentStatusByID(1, 1);
+$component = $cachetPHP->setComponentStatusByID(1, 2);
 
 // Display component
 echo '*** Component ID 1 - After status changed to 1 ***';
