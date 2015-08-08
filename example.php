@@ -1,4 +1,5 @@
 <?php
+
 require_once 'cachet.php';
 
 use DivineOmega\CachetPHP\CachetPHP;
@@ -15,20 +16,18 @@ $cachetPHP->setApiToken('9yMHsdioQosnyVK4iCVR');
 //$cachetPHP->setPassword('test123');
 
 // Check if Cachet instance is working correctly
-if ($cachetPHP->isWorking())
-{
+if ($cachetPHP->isWorking()) {
     echo '*** Cachet instance working fine! ***';
     echo "\n";
 }
-    
+
 // Get components
 $components = $cachetPHP->getComponents();
 
 // Display components
 echo '*** Components ***';
 echo "\n";
-foreach($components as $component)
-{
+foreach ($components as $component) {
     echo $component->id.' - '.$component->name.' - '.$component->description.' - '.$component->status;
     echo "\n";
 }
@@ -39,8 +38,7 @@ $incidents = $cachetPHP->getIncidents();
 // Display incidents
 echo '*** Incidents ***';
 echo "\n";
-foreach($incidents as $incident)
-{
+foreach ($incidents as $incident) {
     echo $incident->id.' - '.$incident->name.' - '.$incident->message.' - '.$incident->human_status;
     echo "\n";
 }
@@ -51,8 +49,7 @@ $metrics = $cachetPHP->getMetrics();
 // Display components
 echo '*** Metrics ***';
 echo "\n";
-foreach($metrics as $metric)
-{
+foreach ($metrics as $metric) {
     echo $metric->id.' - '.$metric->name;
     echo "\n";
 }
@@ -96,5 +93,3 @@ echo '*** Metric ID 1 ***';
 echo "\n";
 echo 'Name: '.$metric->name;
 echo "\n";
-
-?>
