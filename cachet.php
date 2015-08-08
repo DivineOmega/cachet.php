@@ -88,6 +88,12 @@ class cachet
 
         $this->sanityCheck(false);
 
+        if ($order!=null) {
+            if ($order != 'asc' && $order != 'desc') {
+                throw new Exception('cachet.php: Sort ordering parameter must be either \'asc\' or \'desc\'.');
+            }
+        }
+
         $url = $this->baseURL.$type;
         
         $url .= '?sort='.urlencode($sort).'&order='.urlencode($order);
