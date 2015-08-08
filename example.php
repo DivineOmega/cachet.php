@@ -91,8 +91,3 @@ echo '*** Metric ID 1 ***';
 echo "\n";
 echo 'Name: '.$metric->name;
 echo "\n";
-<<<<<<< HEAD
-
-?>
-=======
->>>>>>> a5fe11b62a9a586658bba16dcf05a116eff026cb
