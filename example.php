@@ -2,10 +2,8 @@
 
 require_once 'cachet.php';
 
-use DivineOmega\CachetPHP\CachetPHP;
-
 // Create a CachetPHP object
-$cachetPHP = new CachetPHP();
+$cachetPHP = new DivineOmega\CachetPHP\CachetPHP\cachet();
 
 // Set the base URL for your Cachet instance API
 $cachetPHP->setBaseURL('https://demo.cachethq.io/api/v1/');
