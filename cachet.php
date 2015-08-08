@@ -80,7 +80,7 @@ class cachet
         return ($this->ping() == 'Pong!');
     }
 
-    private function get($type)
+    private function get($type, $sort, $order)
     {
         if ($type !== 'components' && $type !== 'incidents' && $type !== 'metrics') {
             throw new Exception('cachet.php: Invalid type specfied. Must be \'components\', \'incidents\' or \'metrics\'.');
@@ -89,6 +89,8 @@ class cachet
         $this->sanityCheck(false);
 
         $url = $this->baseURL.$type;
+        
+        $url .= '?sort='.urlencode($sort).'&order='.urlencode($order);
 
         $ch = curl_init($url);
 
