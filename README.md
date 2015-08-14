@@ -26,4 +26,5 @@ See the `example.php` file!
 
 ## Dependencies
 
-* PHP cURL Library - http://php.net/manual/en/book.curl.php
+* PHP >= 5.3.0
+* Guzzle ~6.0
