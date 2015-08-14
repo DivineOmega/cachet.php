@@ -2,10 +2,8 @@
 require_once 'vendor/autoload.php';
 require_once 'cachet.php';
 
-use DivineOmega\CachetPHP\CachetPHP;
-
 // Create a CachetPHP object
-$cachetPHP = new CachetPHP();
+$cachetPHP = new DivineOmega\CachetPHP\cachet();
 
 // Set the base URL for your Cachet instance API
 $cachetPHP->setBaseURL('https://demo.cachethq.io/api/v1/');
@@ -15,14 +13,45 @@ $cachetPHP->setApiToken('9yMHsdioQosnyVK4iCVR');
 //$cachetPHP->setEmail('test@test.com');
 //$cachetPHP->setPassword('test123');
 
+// Check if Cachet instance is working correctly
+if ($cachetPHP->isWorking()) {
+    echo "\n";
+    echo '*** Cachet instance working fine! ***';
+    echo "\n";
+}
+
 // Get components
 $components = $cachetPHP->getComponents();
 
 // Display components
+echo "\n";
 echo '*** Components ***';
 echo "\n";
-foreach($components as $component)
-{
+foreach ($components as $component) {
+    echo $component->id.' - '.$component->name.' - '.$component->description.' - '.$component->status;
+    echo "\n";
+}
+
+// Get components sorted by name ascending
+$components = $cachetPHP->getComponents('name', 'asc');
+
+// Display components sorted by name ascending
+echo "\n";
+echo '*** Components (sorted by name ascending) ***';
+echo "\n";
+foreach ($components as $component) {
+    echo $component->id.' - '.$component->name.' - '.$component->description.' - '.$component->status;
+    echo "\n";
+}
+
+// Get components sorted by name descending
+$components = $cachetPHP->getComponents('name', 'desc');
+
+// Display components sorted by name descending
+echo "\n";
+echo '*** Components (sorted by name descending) ***';
+echo "\n";
+foreach ($components as $component) {
     echo $component->id.' - '.$component->name.' - '.$component->description.' - '.$component->status;
     echo "\n";
 }
@@ -31,10 +60,10 @@ foreach($components as $component)
 $incidents = $cachetPHP->getIncidents();
 
 // Display incidents
+echo "\n";
 echo '*** Incidents ***';
 echo "\n";
-foreach($incidents as $incident)
-{
+foreach ($incidents as $incident) {
     echo $incident->id.' - '.$incident->name.' - '.$incident->message.' - '.$incident->human_status;
     echo "\n";
 }
@@ -43,10 +72,10 @@ foreach($incidents as $incident)
 $metrics = $cachetPHP->getMetrics();
 
 // Display components
+echo "\n";
 echo '*** Metrics ***';
 echo "\n";
-foreach($metrics as $metric)
-{
+foreach ($metrics as $metric) {
     echo $metric->id.' - '.$metric->name;
     echo "\n";
 }
@@ -55,6 +84,7 @@ foreach($metrics as $metric)
 $component = $cachetPHP->getComponentByID(1);
 
 // Display component
+echo "\n";
 echo '*** Component ID 1 ***';
 echo "\n";
 echo 'Name: '.$component->name;
@@ -63,9 +93,10 @@ echo 'Status: '.$component->status;
 echo "\n";
 
 // Set component status
-$component = $cachetPHP->setComponentStatusByID(1, 1);
+$component = $cachetPHP->setComponentStatusByID(1, 2);
 
 // Display component
+echo "\n";
 echo '*** Component ID 1 - After status changed to 1 ***';
 echo "\n";
 echo 'Name: '.$component->name;
@@ -77,6 +108,7 @@ echo "\n";
 $incident = $cachetPHP->getIncidentByID(2);
 
 // Display incident
+echo "\n";
 echo '*** Incident ID 2 ***';
 echo "\n";
 echo 'Name: '.$incident->name;
@@ -86,9 +118,8 @@ echo "\n";
 $metric = $cachetPHP->getMetricByID(1);
 
 // Display metric
+echo "\n";
 echo '*** Metric ID 1 ***';
 echo "\n";
 echo 'Name: '.$metric->name;
 echo "\n";
-
-?>
