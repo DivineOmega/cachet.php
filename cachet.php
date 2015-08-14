@@ -1,8 +1,12 @@
 <?php
 namespace DivineOmega\CachetPHP;
 
+use GuzzleHttp\Client;
+
 class CachetPHP
 {
+    private $guzzleClient;
+    
     private $baseURL = '';
     private $email = '';
     private $password = '';
@@ -16,6 +20,11 @@ class CachetPHP
     public function setBaseURL($baseURL)
     {
         $this->baseURL = $baseURL;
+        
+        $this->guzzleClient = new Client([
+            'base_uri' => $baseURL,
+            'timeout'  => 3.0,
+        ]);
     }
     
     public function setEmail($email)
@@ -55,21 +64,13 @@ class CachetPHP
         
         $this->sanityCheck(false);
         
-        $url = $this->baseURL . $type;
+        $response = $this->guzzleClient->get($type);
         
-        $ch = curl_init($url);
+        if ($response->getStatusCode()!=200) throw new \Exception('cachet.php: Bad response.');
         
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $data = json_decode($response->getBody());
         
-        $response = curl_exec($ch);
-        curl_close($ch);
-        
-        if (!$response) throw new \Exception('cachet.php: No response from '.$url);
-        
-        $data = json_decode($response);
-        
-        if (!$data) throw new \Exception('cachet.php: Could not decode JSON from '.$url);
+        if (!$data) throw new \Exception('cachet.php: Could not decode JSON.');
         
         if (isset($data->data))
         {
@@ -88,21 +89,13 @@ class CachetPHP
         
         $this->sanityCheck(false);
         
-        $url = $this->baseURL . $type . '/' . $id;
+        $response = $this->guzzleClient->get($type . '/' . $id);
         
-        $ch = curl_init($url);
+        if ($response->getStatusCode()!=200) throw new \Exception('cachet.php: Bad response.');
         
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $data = json_decode($response->getBody());
         
-        $response = curl_exec($ch);
-        curl_close($ch);
-        
-        if (!$response) throw new \Exception('cachet.php: No response from '.$url);
-        
-        $data = json_decode($response);
-        
-        if (!$data) throw new \Exception('cachet.php: Could not decode JSON from '.$url);
+        if (!$data) throw new \Exception('cachet.php: Could not decode JSON.');
         
         if (isset($data->data))
         {
