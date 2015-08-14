@@ -93,7 +93,7 @@ echo 'Status: '.$component->status;
 echo "\n";
 
 // Set component status
-$component = $cachetPHP->setComponentStatusByID(1, 2);
+$component = $cachetPHP->setComponentStatusByID(1, 1);
 
 // Display component
 echo "\n";

@@ -148,37 +148,31 @@ class cachet
         if (!$id) {
             throw new \Exception('cachet.php: You attempted to set a component status by ID without specifying an ID.');
         }
-
-        $url = $this->baseURL.'components/'.$id;
-
-        $requestData = 'status='.$status;
-
-        $ch = curl_init($url);
-
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $requestData);
-
-        $authorisationHeader = 'Authorization: Basic ' + base64_encode($this->email + ':' + $this->password);
+        
+        $authHeaderKey = 'Authorization';
+        $authHeaderValue = 'Basic ' . base64_encode($this->email . ':' . $this->password);
 
         if ($this->apiToken) {
-            $authorisationHeader = 'X-Cachet-Token: '.$this->apiToken;
+            $authHeaderKey = 'X-Cachet-Token';
+            $authHeaderValue = $this->apiToken;
         }
 
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [$authorisationHeader]);
+        $response = $this->guzzleClient->put('components/' . $id, 
+            [
+                'form_params' => [
+                    'status' => $status
+                ],
+                'headers' => [
+                    $authHeaderKey => $authHeaderValue
+                ]
+            ]);
+        
+        if ($response->getStatusCode()!=200) throw new \Exception('cachet.php: Bad response.');
 
-        $response = curl_exec($ch);
-        curl_close($ch);
-
-        if (!$response) {
-            throw new \Exception('cachet.php: No response from '.$url);
-        }
-
-        $data = json_decode($response);
+        $data = json_decode($response->getBody());
 
         if (!$data) {
-            throw new \Exception('cachet.php: Could not decode JSON from '.$url);
+            throw new \Exception('cachet.php: Could not decode JSON.');
         }
 
         if (isset($data->data)) {
