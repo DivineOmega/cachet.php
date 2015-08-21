@@ -57,21 +57,13 @@ class cachet
     {
         $this->sanityCheck(false);
 
-        $url = $this->baseURL.'ping';
+        $response = $this->guzzleClient->get('ping');
 
-        $ch = curl_init($url);
-
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        $response = curl_exec($ch);
-        curl_close($ch);
-
-        if (!$response) {
-            throw new \Exception('cachet.php: No response from '.$url);
+        if ($response->getStatusCode() != 200) {
+            throw new \Exception('cachet.php: Bad response.');
         }
 
-        $data = json_decode($response);
+        $data = json_decode($response->getBody());
 
         if (!$data) {
             throw new \Exception('cachet.php: Could not decode JSON from '.$url);
