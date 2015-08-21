@@ -47,7 +47,7 @@ class cachet
         if (!$this->baseURL) {
             throw new Exception('cachet.php: The base URL is not set for your cachet instance. Set one with the setBaseURL method.');
         } elseif ($authorisationRequired && (!$this->apiToken && (!$this->email || !$this->password))) {
-            console.log('cachet.php: The apiToken is not set for your cachet instance. Set one with the setApiToken method. Alternatively, set your email and password with the setEmail and setPassword methods respectively.');
+            throw new Exception('cachet.php: The apiToken is not set for your cachet instance. Set one with the setApiToken method. Alternatively, set your email and password with the setEmail and setPassword methods respectively.');
 
             return false;
         }
