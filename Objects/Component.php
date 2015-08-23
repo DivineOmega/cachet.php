@@ -4,8 +4,12 @@ namespace DivineOmega\CachetPHP\Objects;
 
 class Component
 {
-    public function __construct($row)
+    private $cachetInstance = null;
+    
+    public function __construct($cachetInstance, $row)
     {
+        $this->cachetInstance = $cachetInstance;
+        
         foreach ($row as $key => $value) {
             $this->$key = $value;
         }

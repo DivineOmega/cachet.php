@@ -1,5 +1,4 @@
 <?php
-
 namespace DivineOmega\CachetPHP\Factories;
 
 use DivineOmega\CachetPHP\Objects\Component;
@@ -29,29 +28,31 @@ abstract class CachetElementFactory
             $data = $data->data;
         }
 
-        $toReturn = [];
-
+        $toReturn = array();
+        
         foreach ($data as $row) {
+            
             switch ($type) {
-
+                
                 case 'components':
-                    $toReturn[] = new Component($row);
+                    $toReturn[] = new Component($cachetInstance, $row);
                     break;
-
+                    
                 case 'incidents':
-                    $toReturn[] = new Incident($row);
+                    $toReturn[] = new Incident($cachetInstance, $row);
                     break;
-
+                    
                 case 'metrics':
-                    $toReturn[] = new Metric($row);
+                    $toReturn[] = new Metric($cachetInstance, $row);
                     break;
-
+                    
                 default:
                     throw new \Exception('Invalid Cachet element type specified.');
                     break;
             }
         }
-
+        
         return $toReturn;
     }
+    
 }
