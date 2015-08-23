@@ -1,7 +1,6 @@
 <?php
-namespace DivineOmega\CachetPHP\Factories;
 
-use DivineOmega\CachetPHP\Factories\CachetElementFactory;
+namespace DivineOmega\CachetPHP\Factories;
 
 abstract class MetricFactory
 {
@@ -9,5 +8,4 @@ abstract class MetricFactory
     {
         return CachetElementFactory::getAll($cachetInstance, 'metrics', $sort, $order);
     }
-    
 }
