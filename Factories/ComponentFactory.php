@@ -1,7 +1,6 @@
 <?php
-namespace DivineOmega\CachetPHP\Factories;
 
-use DivineOmega\CachetPHP\Factories\CachetElementFactory;
+namespace DivineOmega\CachetPHP\Factories;
 
 abstract class ComponentFactory
 {
@@ -9,5 +8,4 @@ abstract class ComponentFactory
     {
         return CachetElementFactory::getAll($cachetInstance, 'components', $sort, $order);
     }
-    
 }

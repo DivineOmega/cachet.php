@@ -1,4 +1,5 @@
 <?php
+
 namespace DivineOmega\CachetPHP\Factories;
 
 use DivineOmega\CachetPHP\Objects\CachetInstance;
@@ -9,5 +10,4 @@ abstract class CachetInstanceFactory
     {
         return new CachetInstance($baseUrl, $apiToken);
     }
-    
 }
