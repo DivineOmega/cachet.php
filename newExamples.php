@@ -6,6 +6,7 @@ use \DivineOmega\CachetPHP\Factories\CachetInstanceFactory;
 use \DivineOmega\CachetPHP\Factories\ComponentFactory;
 use \DivineOmega\CachetPHP\Factories\IncidentFactory;
 use \DivineOmega\CachetPHP\Factories\MetricFactory;
+use \DivineOmega\CachetPHP\Factories\MetricPointFactory;
 
 $cachetInstance = CachetInstanceFactory::create('https://demo.cachethq.io/api/v1/', '9yMHsdioQosnyVK4iCVR');
 
@@ -67,11 +68,23 @@ foreach ($incidents as $incident) {
 // Get metrics
 $metrics = MetricFactory::getAll($cachetInstance);
 
-// Display components
+// Display metrics
 echo "\n";
 echo '*** Metrics ***';
 echo "\n";
 foreach ($metrics as $metric) {
     echo $metric->id.' - '.$metric->name;
+    echo "\n";
+}
+
+// Get metric points for first metric
+$metricPoints = MetricPointFactory::getAll($cachetInstance, $metrics[0]);
+
+// Display metric points
+echo "\n";
+echo '*** Metric points (for Metric ID '.$metrics[0]->id.') ***';
+echo "\n";
+foreach ($metricPoints as $metricPoint) {
+    echo $metricPoint->id.' - Created at: '.$metricPoint->created_at.' - Updated at: '.$metricPoint->updated_at.' - Value: '.$metricPoint->value;
     echo "\n";
 }
