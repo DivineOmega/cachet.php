@@ -20,6 +20,7 @@ See the `newExamples.php` file!
  * Components
  * Incidents
  * Metrics
+ * Metric Points
 * Updating of component statuses
 * Sanity checks on all requests
 * Useful PHP exceptions thrown to aid debugging
