@@ -11,7 +11,7 @@ If you want to grab cachet.php with Composer, take a look on Packagist: https://
 
 ## Quick start
 
-See the `example.php` file!
+See the `newExamples.php` file!
 
 ## Features
 
