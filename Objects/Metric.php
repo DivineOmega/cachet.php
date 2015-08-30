@@ -2,6 +2,8 @@
 
 namespace DivineOmega\CachetPHP\Objects;
 
+use \DivineOmega\CachetPHP\Factories\MetricPointFactory;
+
 class Metric
 {
     private $cachetInstance = null;
@@ -13,5 +15,10 @@ class Metric
         foreach ($row as $key => $value) {
             $this->$key = $value;
         }
+    }
+    
+    public function getAllMetricPoints($sort = null, $order = null)
+    {
+        return MetricPointFactory::getAll($this->cachetInstance, $this, $sort, $order);
     }
 }

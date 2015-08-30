@@ -3,7 +3,6 @@
 require_once 'vendor/autoload.php';
 
 use \DivineOmega\CachetPHP\Factories\CachetInstanceFactory;
-use \DivineOmega\CachetPHP\Factories\MetricPointFactory;
 
 $cachetInstance = CachetInstanceFactory::create('https://demo.cachethq.io/api/v1/', '9yMHsdioQosnyVK4iCVR');
 
@@ -75,7 +74,7 @@ foreach ($metrics as $metric) {
 }
 
 // Get metric points for first metric
-$metricPoints = MetricPointFactory::getAll($cachetInstance, $metrics[0]);
+$metricPoints = $metrics[0]->getAllMetricPoints();
 
 // Display metric points
 echo "\n";
