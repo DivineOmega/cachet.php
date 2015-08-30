@@ -3,6 +3,8 @@
 namespace DivineOmega\CachetPHP\Objects;
 
 use \DivineOmega\CachetPHP\Factories\ComponentFactory;
+use \DivineOmega\CachetPHP\Factories\IncidentFactory;
+use \DivineOmega\CachetPHP\Factories\MetricFactory;
 
 use GuzzleHttp\Client;
 
@@ -62,5 +64,10 @@ class CachetInstance
     public function getAllIncidents($sort = null, $order = null)
     {
         return IncidentFactory::getAll($this, $sort, $order);
+    }
+    
+    public function getAllMetrics($sort = null, $order = null)
+    {
+        return MetricFactory::getAll($this, $sort, $order);
     }
 }

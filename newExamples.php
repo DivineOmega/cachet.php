@@ -3,8 +3,6 @@
 require_once 'vendor/autoload.php';
 
 use \DivineOmega\CachetPHP\Factories\CachetInstanceFactory;
-use \DivineOmega\CachetPHP\Factories\IncidentFactory;
-use \DivineOmega\CachetPHP\Factories\MetricFactory;
 use \DivineOmega\CachetPHP\Factories\MetricPointFactory;
 
 $cachetInstance = CachetInstanceFactory::create('https://demo.cachethq.io/api/v1/', '9yMHsdioQosnyVK4iCVR');
@@ -53,7 +51,7 @@ foreach ($components as $component) {
 }
 
 // Get incidents
-$incidents = $cachetInstance->getAllIncidents($cachetInstance);
+$incidents = $cachetInstance->getAllIncidents();
 
 // Display incidents
 echo "\n";
@@ -65,7 +63,7 @@ foreach ($incidents as $incident) {
 }
 
 // Get metrics
-$metrics = MetricFactory::getAll($cachetInstance);
+$metrics = $cachetInstance->getAllMetrics();
 
 // Display metrics
 echo "\n";
