@@ -2,6 +2,8 @@
 
 namespace DivineOmega\CachetPHP\Objects;
 
+use \DivineOmega\CachetPHP\Factories\ComponentFactory;
+
 use GuzzleHttp\Client;
 
 class CachetInstance
@@ -50,5 +52,10 @@ class CachetInstance
     public function isWorking()
     {
         return ($this->ping() == 'Pong!');
+    }
+    
+    public function getAllComponents($sort = null, $order = null)
+    {
+        return ComponentFactory::getAll($this, $sort, $order);
     }
 }

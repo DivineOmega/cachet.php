@@ -3,7 +3,6 @@
 require_once 'vendor/autoload.php';
 
 use \DivineOmega\CachetPHP\Factories\CachetInstanceFactory;
-use \DivineOmega\CachetPHP\Factories\ComponentFactory;
 use \DivineOmega\CachetPHP\Factories\IncidentFactory;
 use \DivineOmega\CachetPHP\Factories\MetricFactory;
 use \DivineOmega\CachetPHP\Factories\MetricPointFactory;
@@ -18,7 +17,7 @@ if ($cachetInstance->isWorking()) {
 }
 
 // Get components
-$components = ComponentFactory::getAll($cachetInstance);
+$components = $cachetInstance->getAllComponents();
 
 // Display components
 echo "\n";
@@ -30,7 +29,7 @@ foreach ($components as $component) {
 }
 
 // Get components sorted by name ascending
-$components = ComponentFactory::getAll($cachetInstance, 'name', 'asc');
+$components = $cachetInstance->getAllComponents('name', 'asc');
 
 // Display components sorted by name ascending
 echo "\n";
@@ -42,7 +41,7 @@ foreach ($components as $component) {
 }
 
 // Get components sorted by name descending
-$components = ComponentFactory::getAll($cachetInstance, 'name', 'desc');
+$components = $cachetInstance->getAllComponents('name', 'desc');
 
 // Display components sorted by name descending
 echo "\n";
