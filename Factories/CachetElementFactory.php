@@ -5,6 +5,7 @@ namespace DivineOmega\CachetPHP\Factories;
 use DivineOmega\CachetPHP\Objects\Component;
 use DivineOmega\CachetPHP\Objects\Incident;
 use DivineOmega\CachetPHP\Objects\Metric;
+use DivineOmega\CachetPHP\Objects\Subscriber;
 
 abstract class CachetElementFactory
 {
@@ -44,6 +45,10 @@ abstract class CachetElementFactory
 
                 case 'metrics':
                     $toReturn[] = new Metric($cachetInstance, $row);
+                    break;
+                    
+                case 'subscribers':
+                    $toReturn[] = new Subscriber($cachetInstance, $row);
                     break;
 
                 default:

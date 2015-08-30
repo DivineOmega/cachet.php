@@ -84,3 +84,15 @@ foreach ($metricPoints as $metricPoint) {
     echo $metricPoint->id.' - Created at: '.$metricPoint->created_at.' - Updated at: '.$metricPoint->updated_at.' - Value: '.$metricPoint->value;
     echo "\n";
 }
+
+// Get subscribers
+$subscribers = $cachetInstance->getAllSubscribers();
+
+// Display subscribers
+echo "\n";
+echo '*** Subscribers ***';
+echo "\n";
+foreach ($subscribers as $subscriber) {
+    echo $subscriber->id.' - '.$subscriber->email;
+    echo "\n";
+}
