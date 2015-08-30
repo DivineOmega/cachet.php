@@ -10,7 +10,7 @@ abstract class SubscriberFactory
     {
         $authHeaderKey = 'X-Cachet-Token';
         $authHeaderValue = $cachetInstance->getApiToken();
-        
+
         $response = $cachetInstance->guzzleClient->get('subscribers',
             ['query' => ['sort' => $sort,
                 'order'         => $order, ],

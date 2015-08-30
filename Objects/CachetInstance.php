@@ -2,11 +2,10 @@
 
 namespace DivineOmega\CachetPHP\Objects;
 
-use \DivineOmega\CachetPHP\Factories\ComponentFactory;
-use \DivineOmega\CachetPHP\Factories\IncidentFactory;
-use \DivineOmega\CachetPHP\Factories\MetricFactory;
-use \DivineOmega\CachetPHP\Factories\SubscriberFactory;
-
+use DivineOmega\CachetPHP\Factories\ComponentFactory;
+use DivineOmega\CachetPHP\Factories\IncidentFactory;
+use DivineOmega\CachetPHP\Factories\MetricFactory;
+use DivineOmega\CachetPHP\Factories\SubscriberFactory;
 use GuzzleHttp\Client;
 
 class CachetInstance
@@ -30,7 +29,7 @@ class CachetInstance
             'timeout'  => 3.0,
         ]);
     }
-    
+
     public function getApiToken()
     {
         return $this->apiToken;
@@ -76,7 +75,7 @@ class CachetInstance
     {
         return MetricFactory::getAll($this, $sort, $order);
     }
-    
+
     public function getAllSubscribers($sort = null, $order = null)
     {
         return SubscriberFactory::getAll($this, $sort, $order);
