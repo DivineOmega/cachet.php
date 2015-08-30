@@ -61,17 +61,17 @@ class CachetInstance
     {
         return ($this->ping() == 'Pong!');
     }
-    
+
     public function getAllComponents($sort = null, $order = null)
     {
         return ComponentFactory::getAll($this, $sort, $order);
     }
-    
+
     public function getAllIncidents($sort = null, $order = null)
     {
         return IncidentFactory::getAll($this, $sort, $order);
     }
-    
+
     public function getAllMetrics($sort = null, $order = null)
     {
         return MetricFactory::getAll($this, $sort, $order);
