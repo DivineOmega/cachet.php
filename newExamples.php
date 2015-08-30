@@ -53,7 +53,7 @@ foreach ($components as $component) {
 }
 
 // Get incidents
-$incidents = IncidentFactory::getAll($cachetInstance);
+$incidents = $cachetInstance->getAllIncidents($cachetInstance);
 
 // Display incidents
 echo "\n";

@@ -58,4 +58,9 @@ class CachetInstance
     {
         return ComponentFactory::getAll($this, $sort, $order);
     }
+    
+    public function getAllIncidents($sort = null, $order = null)
+    {
+        return IncidentFactory::getAll($this, $sort, $order);
+    }
 }
