@@ -11,7 +11,58 @@ If you want to grab cachet.php with Composer, take a look on Packagist: https://
 
 ## Quick start
 
-See the `example.php` file!
+Before starting, install the cachet.php library via Composer.
+
+Now, you need to create a CachetInstance object that represents your installation of Cachet. You can do this like so:
+
+```php
+require_once 'vendor/autoload.php';
+
+use \DivineOmega\CachetPHP\Factories\CachetInstanceFactory;
+
+$cachetInstance = CachetInstanceFactory::create('https://demo.cachethq.io/api/v1/', '9yMHsdioQosnyVK4iCVR');
+```
+
+### Retrieving Cachet elements
+
+Retrieving data from the various elements of your Cachet instance is easy. Just call the appropriate getter method on your ```$cachetInstance``` object. The Cachet install will be contacted and an array of request appropriate objects be returned.
+
+If you wish to sort your results, you can use the following syntax. This works for components, incidents, metrics, metric points and subscribers.
+
+```php
+// Get components sorted by name ascending
+$components = $cachetInstance->getAllComponents('name', 'asc');
+```
+
+#### Components
+
+```php
+$components = $cachetInstance->getAllComponents();
+```
+
+#### Incidents
+
+```php
+$incidents = $cachetInstance->getAllIncidents();
+```
+
+#### Metrics
+
+```php
+$metrics = $cachetInstance->getAllMetrics();
+```
+
+#### Metric Points
+
+```php
+$metricPoints = $metrics[0]->getAllMetricPoints();
+```
+
+#### Subscribers
+
+```php
+$subscribers = $cachetInstance->getAllSubscribers();
+```
 
 ## Features
 
