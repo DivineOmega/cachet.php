@@ -24,6 +24,6 @@ class Metric
     
     public function delete()
     {
-        $cachetInstance->guzzleClient->delete('metrics/'.$this->id, ['headers' => $cachetInstance->getAuthHeaders()]);
+        $this->cachetInstance->guzzleClient->delete('metrics/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders()]);
     }
 }

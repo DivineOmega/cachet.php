@@ -17,6 +17,6 @@ class Component
     
     public function delete()
     {
-        $cachetInstance->guzzleClient->delete('components/'.$this->id, ['headers' => $cachetInstance->getAuthHeaders()]);
+        $this->cachetInstance->guzzleClient->delete('components/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders()]);
     }
 }
