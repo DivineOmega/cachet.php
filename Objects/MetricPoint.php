@@ -16,4 +16,9 @@ class MetricPoint
             $this->$key = $value;
         }
     }
+    
+    public function delete()
+    {
+        $this->cachetInstance->guzzleClient->delete('metrics/'.$this->metric->id."/points/".$this->id, ['headers' => $this->cachetInstance->getAuthHeaders()]);
+    }
 }
