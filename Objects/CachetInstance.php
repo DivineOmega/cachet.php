@@ -34,12 +34,12 @@ class CachetInstance
     {
         return $this->apiToken;
     }
-    
+
     public function getAuthHeaders()
     {
         $authHeaderKey = 'X-Cachet-Token';
         $authHeaderValue = $this->getApiToken();
-        
+
         return [
                     $authHeaderKey => $authHeaderValue,
                 ];
