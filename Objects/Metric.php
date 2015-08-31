@@ -26,4 +26,17 @@ class Metric
     {
         $this->cachetInstance->guzzleClient->delete('metrics/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders()]);
     }
+    
+    public function save()
+    {
+        $queryParams = [];
+        
+        $queryParams['name'] = $this->name;
+        $queryParams['description'] = $this->description;
+        $queryParams['suffix'] = $this->suffix;
+        $queryParams['display_chart'] = $this->display_chart;
+        
+        $this->cachetInstance->guzzleClient->put('metrics/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders(),
+            'query' => $queryParams]);
+    }
 }
