@@ -96,17 +96,6 @@ $incidents = $cachetInstance->getAllIncidents();
 $incidents[0]->delete();
 ```
 
-# Features
-
-* Checking if Cachet instance is working correctly (via [ping](https://docs.cachethq.io/v1.0/docs/ping))
-* Retrieval of Cachet elements (all or single)
- * Components
- * Incidents
- * Metrics
-* Updating of component statuses
-* Sanity checks on all requests
-* Useful PHP exceptions thrown to aid debugging
-
 # Dependencies
 
 * PHP >= 5.3.0
