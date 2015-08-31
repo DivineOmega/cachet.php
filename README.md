@@ -22,6 +22,7 @@ require_once 'vendor/autoload.php';
 
 use \DivineOmega\CachetPHP\Factories\CachetInstanceFactory;
 
+// The API token for the demo instance is 9yMHsdioQosnyVK4iCVR.
 $cachetInstance = CachetInstanceFactory::create('https://demo.cachethq.io/api/v1/', '9yMHsdioQosnyVK4iCVR');
 ```
 
