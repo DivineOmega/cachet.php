@@ -66,6 +66,36 @@ foreach ($components as $component) {
 
 See the [official Cachet documentation](https://docs.cachethq.io/docs) for information on the variables available for each type of Cachet element.
 
+## Updating Cachet elements
+
+The cachet.php allows you to make changes to a Cachet element and saving those changes back to your Cachet install. This is done by directly changing the Cachet element's public member variables, and then calling the object's `save()` method.
+
+The following example shows how to change the name and status of a component, then save the changes.
+
+```php
+// Get components
+$components = $cachetInstance->getAllComponents();
+
+// Change component details
+$component[0]->name = 'My awesome component';
+$component[0]->status = 1;
+$component[0]->save();
+```
+
+## Deleting Cachet elements
+
+To delete a Cachet element from your Cachet install, you simply need to call the `delete()` method on the appropriate Cachet element object.
+
+For example, to delete an incident you could do the following.
+
+```php
+// Get incidents
+$incidents = $cachetInstance->getAllIncidents();
+
+// Delete the first one
+$incidents[0]->delete();
+```
+
 # Features
 
 * Checking if Cachet instance is working correctly (via [ping](https://docs.cachethq.io/v1.0/docs/ping))
