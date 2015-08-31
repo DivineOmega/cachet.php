@@ -14,7 +14,7 @@ class Component
             $this->$key = $value;
         }
     }
-    
+
     public function delete()
     {
         $cachetInstance->guzzleClient->delete('components/'.$this->id, ['headers' => $cachetInstance->getAuthHeaders()]);

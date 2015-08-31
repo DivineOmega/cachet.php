@@ -14,7 +14,7 @@ class Subscriber
             $this->$key = $value;
         }
     }
-    
+
     public function delete()
     {
         $cachetInstance->guzzleClient->delete('subscribers/'.$this->id, ['headers' => $cachetInstance->getAuthHeaders()]);

@@ -14,7 +14,7 @@ class Incident
             $this->$key = $value;
         }
     }
-    
+
     public function delete()
     {
         $cachetInstance->guzzleClient->delete('incidents/'.$this->id, ['headers' => $cachetInstance->getAuthHeaders()]);
