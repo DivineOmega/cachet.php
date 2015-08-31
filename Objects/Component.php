@@ -19,19 +19,19 @@ class Component
     {
         $this->cachetInstance->guzzleClient->delete('components/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders()]);
     }
-    
+
     public function save()
     {
         $queryParams = [];
-        
+
         $queryParams['name'] = $this->name;
         $queryParams['description'] = $this->description;
         $queryParams['link'] = $this->link;
         $queryParams['status'] = $this->status;
         $queryParams['order'] = $this->order;
         $queryParams['group_id'] = $this->group_id;
-        
+
         $this->cachetInstance->guzzleClient->put('components/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders(),
-            'query' => $queryParams]);
+            'query' => $queryParams, ]);
     }
 }

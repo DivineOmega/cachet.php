@@ -21,14 +21,14 @@ class MetricPoint
     {
         $this->cachetInstance->guzzleClient->delete('metrics/'.$this->metric->id.'/points/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders()]);
     }
-    
+
     public function save()
     {
         $queryParams = [];
-        
+
         $queryParams['value'] = $this->value;
-        
+
         $this->cachetInstance->guzzleClient->put('metrics/'.$this->metric->id.'/points/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders(),
-            'query' => $queryParams]);
+            'query' => $queryParams, ]);
     }
 }
