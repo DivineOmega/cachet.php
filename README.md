@@ -13,6 +13,8 @@ If you want to grab cachet.php with Composer, take a look on Packagist: https://
 
 Before starting, install the cachet.php library via Composer.
 
+### Create CachetInstance object
+
 Now, you need to create a CachetInstance object that represents your installation of Cachet. You can do this like so:
 
 ```php
