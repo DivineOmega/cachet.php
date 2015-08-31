@@ -37,7 +37,7 @@ $metricPoints = $metrics[0]->getAllMetricPoints();      // Metric Points
 $subscribers = $cachetInstance->getAllSubscribers();    // Subscribers
 ```
 
-### Sorting Cachet elements
+#### Sorting Cachet elements
 
 If you wish to sort your results, you can use the following syntax. This works for components, incidents, metrics, metric points and subscribers.
 
