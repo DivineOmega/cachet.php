@@ -27,13 +27,6 @@ $cachetInstance = CachetInstanceFactory::create('https://demo.cachethq.io/api/v1
 
 Retrieving data from the various elements of your Cachet instance is easy. Just call the appropriate getter method on your ```$cachetInstance``` object. The Cachet install will be contacted and an array of request appropriate objects be returned.
 
-If you wish to sort your results, you can use the following syntax. This works for components, incidents, metrics, metric points and subscribers.
-
-```php
-// Get components sorted by name ascending
-$components = $cachetInstance->getAllComponents('name', 'asc');
-```
-
 #### Components
 
 ```php
@@ -63,6 +56,34 @@ $metricPoints = $metrics[0]->getAllMetricPoints();
 ```php
 $subscribers = $cachetInstance->getAllSubscribers();
 ```
+
+### Sorting Cachet elements
+
+If you wish to sort your results, you can use the following syntax. This works for components, incidents, metrics, metric points and subscribers.
+
+```php
+// Get components sorted by name ascending
+$components = $cachetInstance->getAllComponents('name', 'asc');
+```
+
+### Reading from Cachet element objects
+
+Reading data from retrieved Cachet element objects is easy. Just access their public member variables.
+
+Here's an example of outputing the id, name, description and status of a Cachet component.
+
+```php
+// Get components
+$components = $cachetInstance->getAllComponents();
+
+// Display components
+foreach ($components as $component) {
+    echo $component->id.' - '.$component->name.' - '.$component->description.' - '.$component->status;
+    echo "<br/>";
+}
+```
+
+See the [official Cachet documentation](https://docs.cachethq.io/docs) for information on the variables available for each type of Cachet element.
 
 ## Features
 
