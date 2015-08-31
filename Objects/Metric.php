@@ -21,4 +21,9 @@ class Metric
     {
         return MetricPointFactory::getAll($this->cachetInstance, $this, $sort, $order);
     }
+    
+    public function delete()
+    {
+        $cachetInstance->guzzleClient->delete('metrics/'.$this->id, ['headers' => $cachetInstance->getAuthHeaders()]);
+    }
 }

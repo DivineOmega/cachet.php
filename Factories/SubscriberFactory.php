@@ -8,15 +8,10 @@ abstract class SubscriberFactory
 {
     public function getAll($cachetInstance, $sort = null, $order = null)
     {
-        $authHeaderKey = 'X-Cachet-Token';
-        $authHeaderValue = $cachetInstance->getApiToken();
-
         $response = $cachetInstance->guzzleClient->get('subscribers',
             ['query' => ['sort' => $sort,
                 'order'         => $order, ],
-            'headers' => [
-                    $authHeaderKey => $authHeaderValue,
-                ],
+            'headers' => $cachetInstance->getAuthHeaders(),
             ]);
 
         if ($response->getStatusCode() != 200) {
