@@ -29,34 +29,12 @@ $cachetInstance = CachetInstanceFactory::create('https://demo.cachethq.io/api/v1
 
 Retrieving data from the various elements of your Cachet instance is easy. Just call the appropriate getter method on your ```$cachetInstance``` object. The Cachet install will be contacted and an array of request appropriate objects be returned.
 
-#### Components
-
 ```php
-$components = $cachetInstance->getAllComponents();
-```
-
-#### Incidents
-
-```php
-$incidents = $cachetInstance->getAllIncidents();
-```
-
-#### Metrics
-
-```php
-$metrics = $cachetInstance->getAllMetrics();
-```
-
-#### Metric Points
-
-```php
-$metricPoints = $metrics[0]->getAllMetricPoints();
-```
-
-#### Subscribers
-
-```php
-$subscribers = $cachetInstance->getAllSubscribers();
+$components = $cachetInstance->getAllComponents();      // Components
+$incidents = $cachetInstance->getAllIncidents();        // Incidents
+$metrics = $cachetInstance->getAllMetrics();            // Metrics
+$metricPoints = $metrics[0]->getAllMetricPoints();      // Metric Points
+$subscribers = $cachetInstance->getAllSubscribers();    // Subscribers
 ```
 
 ### Sorting Cachet elements
