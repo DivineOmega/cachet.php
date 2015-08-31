@@ -19,4 +19,18 @@ class Incident
     {
         $this->cachetInstance->guzzleClient->delete('incidents/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders()]);
     }
+    
+    public function save()
+    {
+        $queryParams = [];
+        
+        $queryParams['name'] = $this->name;
+        $queryParams['message'] = $this->message;
+        $queryParams['status'] = $this->status;
+        $queryParams['visible'] = $this->visible;
+        $queryParams['component_id'] = $this->component_id;
+        
+        $this->cachetInstance->guzzleClient->put('incidents/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders(),
+            'query' => $queryParams]);
+    }
 }
