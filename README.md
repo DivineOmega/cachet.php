@@ -9,7 +9,7 @@ This library could be useful for displaying details from your Cachet status page
 
 If you want to grab cachet.php with Composer, take a look on Packagist: https://packagist.org/packages/divineomega/cachetphp
 
-# Usage
+# Quick Start
 
 Before starting, install the cachet.php library via Composer.
 
