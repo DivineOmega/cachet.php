@@ -35,4 +35,13 @@ abstract class MetricPointFactory
 
         return $toReturn;
     }
+    
+    public function create($cachetInstance, $metric, $data)
+    {
+        $response = $cachetInstance->guzzleClient->get('metrics/'.$metric->id.'/points', ['json' => $data]);
+        
+        if ($response->getStatusCode() != 200) {
+            throw new \Exception('Bad response from Cachet instance.');
+        }
+    }
 }

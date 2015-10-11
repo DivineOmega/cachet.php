@@ -85,6 +85,17 @@ foreach ($metricPoints as $metricPoint) {
     echo "\n";
 }
 
+// Add subscriber
+echo "\n";
+echo '*** Add Subscriber ***';
+echo "\n";
+$subscriberDetails = [ 'email' => 'bob'.rand(1,99999).'@example.com' ]; 
+
+$subscriber = $cachetInstance->createSubscriber($subscriberDetails);
+
+echo $subscriber->id.' - '.$subscriber->email;
+echo "\n";
+
 // Get subscribers
 $subscribers = $cachetInstance->getAllSubscribers();
 

@@ -9,12 +9,15 @@ use DivineOmega\CachetPHP\Objects\Subscriber;
 
 abstract class CachetElementFactory
 {
-    public function getAll($cachetInstance, $type, $sort = null, $order = null)
+    public function getAll($cachetInstance, $type, $sort = null, $order = null, $authorisationRequired = false)
     {
-        $response = $cachetInstance->guzzleClient->get($type,
-            ['query' => ['sort' => $sort,
-                'order'         => $order, ],
-            ]);
+        $requestParameters = ['query' => ['sort' => $sort, 'order' => $order ] ];
+        
+        if ($authorisationRequired) {
+            $requestParameters['headers'] = $cachetInstance->getAuthHeaders();
+        }
+        
+        $response = $cachetInstance->guzzleClient->get($type, $requestParameters);
 
         if ($response->getStatusCode() != 200) {
             throw new \Exception('Bad response from Cachet instance.');
@@ -58,5 +61,16 @@ abstract class CachetElementFactory
         }
 
         return $toReturn;
+    }
+    
+    public function create($cachetInstance, $type, $data)
+    {
+        $requestParameters = ['json' => $data, 'headers' => $cachetInstance->getAuthHeaders()];
+        
+        $response = $cachetInstance->guzzleClient->post($type, $requestParameters);
+        
+        if ($response->getStatusCode() != 200) {
+            throw new \Exception('Bad response from Cachet instance.');
+        }
     }
 }
