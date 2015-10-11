@@ -10,7 +10,7 @@ $cachetInstance = CachetInstanceFactory::create('https://demo.cachethq.io/api/v1
 echo "\n";
 echo '*** Add Component ***';
 echo "\n";
-$componentDetails = [ 'name' => 'Test Component '.rand(1,99999), 'status' => 1 ]; 
+$componentDetails = ['name' => 'Test Component '.rand(1, 99999), 'status' => 1];
 
 $component = $cachetInstance->createComponent($componentDetails);
 

@@ -90,22 +90,22 @@ class CachetInstance
     {
         return SubscriberFactory::getAll($this, $sort, $order);
     }
-    
+
     public function createComponent($data)
     {
         return ComponentFactory::create($this, $data);
     }
-    
+
     public function createIncident($data)
     {
         return IncidentFactory::create($this, $data);
     }
-    
+
     public function createMetric($data)
     {
         return MetricFactory::create($this, $data);
     }
-    
+
     public function createSubscriber($data)
     {
         return SubscriberFactory::create($this, $data);

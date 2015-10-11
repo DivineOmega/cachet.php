@@ -8,7 +8,7 @@ abstract class MetricFactory
     {
         return CachetElementFactory::getAll($cachetInstance, 'metrics', $sort, $order);
     }
-    
+
     public function create($cachetInstance, $data)
     {
         return CachetElementFactory::create($cachetInstance, 'metrics', $data);
