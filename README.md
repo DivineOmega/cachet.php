@@ -66,6 +66,20 @@ foreach ($components as $component) {
 
 See the [official Cachet documentation](https://docs.cachethq.io/docs) for information on the variables available for each type of Cachet element.
 
+## Creating Cachet elements
+
+You can create a Cachet element, such as a component or incident very easily using the cachet.php library. This involves creating an associative array of the details for the Cachet elements and then passing this to the relevant creation method.
+
+The following example shows you how to make a simple test component.
+
+```php
+$componentDetails = ['name' => 'Test Component '.rand(1, 99999), 'status' => 1];
+
+$component = $cachetInstance->createComponent($componentDetails);
+
+echo $component->id.' - '.$component->name.' - '.$component->description.' - '.$component->status;
+```
+
 ## Updating Cachet elements
 
 The cachet.php allows you to make changes to a Cachet element and saving those changes back to your Cachet install. This is done by directly changing the Cachet element's public member variables, and then calling the object's `save()` method.
