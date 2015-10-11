@@ -10,7 +10,7 @@ $cachetInstance = CachetInstanceFactory::create('https://demo.cachethq.io/api/v1
 echo "\n";
 echo '*** Add Component ***';
 echo "\n";
-$componentDetails = [ 'name' => 'Test Component '.rand(1,99999), 'status' => 1 ]; 
+$componentDetails = ['name' => 'Test Component '.rand(1, 99999), 'status' => 1];
 
 $component = $cachetInstance->createComponent($componentDetails);
 
@@ -100,7 +100,7 @@ foreach ($metricPoints as $metricPoint) {
 echo "\n";
 echo '*** Add Subscriber ***';
 echo "\n";
-$subscriberDetails = [ 'email' => 'bob'.rand(1,99999).'@example.com' ]; 
+$subscriberDetails = ['email' => 'bob'.rand(1, 99999).'@example.com'];
 
 $subscriber = $cachetInstance->createSubscriber($subscriberDetails);
 

@@ -39,7 +39,7 @@ class Metric
         $this->cachetInstance->guzzleClient->put('metrics/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders(),
             'query' => $queryParams, ]);
     }
-    
+
     public function createMetricPoint($data)
     {
         return MetricPointFactory::create($this->cachetInstance, $this, $data);
