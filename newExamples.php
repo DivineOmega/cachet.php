@@ -6,6 +6,17 @@ use \DivineOmega\CachetPHP\Factories\CachetInstanceFactory;
 
 $cachetInstance = CachetInstanceFactory::create('https://demo.cachethq.io/api/v1/', '9yMHsdioQosnyVK4iCVR');
 
+// Add component
+echo "\n";
+echo '*** Add Component ***';
+echo "\n";
+$componentDetails = [ 'name' => 'Test Component '.rand(1,99999), 'status' => 1 ]; 
+
+$component = $cachetInstance->createComponent($componentDetails);
+
+echo $component->id.' - '.$component->name.' - '.$component->description.' - '.$component->status;
+echo "\n";
+
 // Check if Cachet instance is working correctly
 if ($cachetInstance->isWorking()) {
     echo "\n";
