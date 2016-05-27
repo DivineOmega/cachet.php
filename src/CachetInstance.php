@@ -6,6 +6,10 @@ use DivineOmega\CachetPHP\Factories\ComponentFactory;
 use DivineOmega\CachetPHP\Factories\IncidentFactory;
 use DivineOmega\CachetPHP\Factories\MetricFactory;
 use DivineOmega\CachetPHP\Factories\SubscriberFactory;
+use DivineOmega\CachetPHP\Models\Component;
+use DivineOmega\CachetPHP\Models\Incident;
+use DivineOmega\CachetPHP\Models\Metric;
+use DivineOmega\CachetPHP\Models\Subscriber;
 use GuzzleHttp\Client;
 
 class CachetInstance
@@ -59,21 +63,41 @@ class CachetInstance
         return $this->ping() == 'Pong!';
     }
 
+    /**
+     * @param string $sort
+     * @param string $order
+     * @return Component[]
+     */
     public function getAllComponents($sort = null, $order = null)
     {
         return ComponentFactory::getAll($this, $sort, $order);
     }
 
+    /**
+     * @param string $sort
+     * @param string $order
+     * @return Incident[]
+     */
     public function getAllIncidents($sort = null, $order = null)
     {
         return IncidentFactory::getAll($this, $sort, $order);
     }
 
+    /**
+     * @param string $sort
+     * @param string $order
+     * @return Metric[]
+     */
     public function getAllMetrics($sort = null, $order = null)
     {
         return MetricFactory::getAll($this, $sort, $order);
     }
 
+    /**
+     * @param string $sort
+     * @param string $order
+     * @return Subscriber[]
+     */
     public function getAllSubscribers($sort = null, $order = null)
     {
         return SubscriberFactory::getAll($this, $sort, $order);
