@@ -34,7 +34,7 @@ class CachetInstance
 
     public function client()
     {
-      return $this->client;
+        return $this->client;
     }
 
     public function ping()
