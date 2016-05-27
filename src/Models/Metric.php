@@ -19,7 +19,7 @@ class Metric extends ModelBase
 
     public function delete()
     {
-        $this->cachetInstance->guzzleClient->delete('metrics/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders()]);
+        $this->cachetInstance->client()->request('metrics/'.$this->id, null, 'DELETE');
     }
 
     public function save()
@@ -31,8 +31,7 @@ class Metric extends ModelBase
         $queryParams['suffix'] = $this->suffix;
         $queryParams['display_chart'] = $this->display_chart;
 
-        $this->cachetInstance->guzzleClient->put('metrics/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders(),
-            'query' => $queryParams, ]);
+        $this->cachetInstance->client()->request('metrics/'.$this->id, $queryParams, 'PUT');
     }
 
     public function createMetricPoint($data)

@@ -12,31 +12,11 @@ abstract class CachetElementFactory
 {
     public static function getAll(CachetInstance $cachetInstance, $type, $sort = null, $order = null, $authorisationRequired = false)
     {
-        $requestParameters = ['query' => ['sort' => $sort, 'order' => $order]];
-
-        if ($authorisationRequired) {
-            $requestParameters['headers'] = $cachetInstance->getAuthHeaders();
-        }
-
-        $response = $cachetInstance->guzzleClient->get($type, $requestParameters);
-
-        if ($response->getStatusCode() != 200) {
-            throw new \Exception('Bad response from Cachet instance.');
-        }
-
-        $data = json_decode($response->getBody());
-
-        if (!$data) {
-            throw new \Exception('Could not decode JSON retrieved from Cachet instance.');
-        }
-
-        if (isset($data->data)) {
-            $data = $data->data;
-        }
+        $response = $cachetInstance->client()->request($type, ['sort' => $sort, 'order' => $order], 'GET', $authorisationRequired);
 
         $toReturn = [];
 
-        foreach ($data as $row) {
+        foreach ($response->getData() as $row) {
             switch ($type) {
 
                 case 'components':
@@ -64,29 +44,12 @@ abstract class CachetElementFactory
         return $toReturn;
     }
 
-    public static function create($cachetInstance, $type, $data)
+    public static function create(CachetInstance $cachetInstance, $type, $data)
     {
-        $requestParameters = ['json' => $data, 'headers' => $cachetInstance->getAuthHeaders()];
-
-        $response = $cachetInstance->guzzleClient->post($type, $requestParameters);
-
-        if ($response->getStatusCode() != 200) {
-            throw new \Exception('Bad response from Cachet instance.');
-        }
-
-        $data = json_decode($response->getBody());
-
-        if (!$data) {
-            throw new \Exception('Could not decode JSON retrieved from Cachet instance.');
-        }
-
-        if (isset($data->data)) {
-            $data = $data->data;
-        }
+        $response = $cachetInstance->client()->request($type, $data, 'POST');
 
         $toReturn = null;
-
-        $row = $data;
+        $row = $response->getData();
 
         switch ($type) {
 

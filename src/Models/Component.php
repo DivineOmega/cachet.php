@@ -14,7 +14,7 @@ class Component extends ModelBase
 
     public function delete()
     {
-        $this->cachetInstance->guzzleClient->delete('components/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders()]);
+        $this->cachetInstance->client()->request('components/'.$this->id, null, 'DELETE');
     }
 
     public function save()
@@ -28,7 +28,6 @@ class Component extends ModelBase
         $queryParams['order'] = $this->order;
         $queryParams['group_id'] = $this->group_id;
 
-        $this->cachetInstance->guzzleClient->put('components/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders(),
-            'query' => $queryParams, ]);
+        $this->cachetInstance->client()->request('components/'.$this->id, $queryParams, 'PUT');
     }
 }

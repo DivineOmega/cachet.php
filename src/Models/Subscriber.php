@@ -8,6 +8,6 @@ class Subscriber extends ModelBase
 
     public function delete()
     {
-        $this->cachetInstance->guzzleClient->delete('subscribers/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders()]);
+        $this->cachetInstance->client()->request('subscribers/'.$this->id, null, 'DELETE');
     }
 }

@@ -13,7 +13,7 @@ class Incident extends ModelBase
 
     public function delete()
     {
-        $this->cachetInstance->guzzleClient->delete('incidents/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders()]);
+        $this->cachetInstance->client()->request('incidents/'.$this->id, null, 'DELETE');
     }
 
     public function save()
@@ -26,7 +26,6 @@ class Incident extends ModelBase
         $queryParams['visible'] = $this->visible;
         $queryParams['component_id'] = $this->component_id;
 
-        $this->cachetInstance->guzzleClient->put('incidents/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders(),
-            'query' => $queryParams, ]);
+        $this->cachetInstance->client()->request('incidents/'.$this->id, $queryParams, 'PUT');
     }
 }
