@@ -68,7 +68,7 @@ class CachetInstance
 
     public function isWorking()
     {
-        return ($this->ping() == 'Pong!');
+        return $this->ping() == 'Pong!';
     }
 
     public function getAllComponents($sort = null, $order = null)
