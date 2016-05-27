@@ -1,6 +1,6 @@
 <?php
 
-namespace DivineOmega\CachetPHP\Objects;
+namespace DivineOmega\CachetPHP;
 
 use DivineOmega\CachetPHP\Factories\ComponentFactory;
 use DivineOmega\CachetPHP\Factories\IncidentFactory;

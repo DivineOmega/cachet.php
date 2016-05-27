@@ -4,18 +4,13 @@ namespace DivineOmega\CachetPHP\Objects;
 
 use DivineOmega\CachetPHP\Factories\MetricPointFactory;
 
-class Metric
+class Metric extends ModelBase
 {
-    private $cachetInstance = null;
-
-    public function __construct($cachetInstance, $row)
-    {
-        $this->cachetInstance = $cachetInstance;
-
-        foreach ($row as $key => $value) {
-            $this->$key = $value;
-        }
-    }
+    public $id;
+    public $name;
+    public $description;
+    public $suffix;
+    public $display_chart;
 
     public function getAllMetricPoints($sort = null, $order = null)
     {
@@ -24,7 +19,7 @@ class Metric
 
     public function delete()
     {
-        $this->cachetInstance->guzzleClient->delete('metrics/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders()]);
+        $this->cachetInstance->client()->request('metrics/'.$this->id, null, 'DELETE');
     }
 
     public function save()
@@ -36,8 +31,7 @@ class Metric
         $queryParams['suffix'] = $this->suffix;
         $queryParams['display_chart'] = $this->display_chart;
 
-        $this->cachetInstance->guzzleClient->put('metrics/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders(),
-            'query' => $queryParams, ]);
+        $this->cachetInstance->client()->request('metrics/'.$this->id, $queryParams, 'PUT');
     }
 
     public function createMetricPoint($data)
