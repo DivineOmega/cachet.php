@@ -2,9 +2,18 @@
 
 require_once 'vendor/autoload.php';
 
+use \DivineOmega\CachetPHP\Client\ApiV1Client;
 use \DivineOmega\CachetPHP\Factories\CachetInstanceFactory;
 
-$cachetInstance = CachetInstanceFactory::create('https://demo.cachethq.io/api/v1/', '9yMHsdioQosnyVK4iCVR');
+$client = new ApiV1Client('https://demo.cachethq.io/api', '9yMHsdioQosnyVK4iCVR');
+$cachetInstance = CachetInstanceFactory::create($client);
+
+// Check if Cachet instance is working correctly
+if ($cachetInstance->isWorking()) {
+    echo "\n";
+    echo '*** Cachet instance working fine! ***';
+    echo "\n";
+}
 
 // Add component
 echo "\n";
@@ -16,13 +25,6 @@ $component = $cachetInstance->createComponent($componentDetails);
 
 echo $component->id.' - '.$component->name.' - '.$component->description.' - '.$component->status;
 echo "\n";
-
-// Check if Cachet instance is working correctly
-if ($cachetInstance->isWorking()) {
-    echo "\n";
-    echo '*** Cachet instance working fine! ***';
-    echo "\n";
-}
 
 // Get components
 $components = $cachetInstance->getAllComponents();

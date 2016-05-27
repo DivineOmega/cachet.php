@@ -3,14 +3,14 @@
 namespace DivineOmega\CachetPHP\Factories;
 
 use DivineOmega\CachetPHP\CachetInstance;
-use DivineOmega\CachetPHP\Objects\MetricPoint;
+use DivineOmega\CachetPHP\Models\MetricPoint;
 
 abstract class MetricPointFactory
 {
     public static function getAll(CachetInstance $cachetInstance, $metric, $sort = null, $order = null)
     {
         $response = $cachetInstance->client()->request('metrics/'.$metric->id.'/points',
-            ['sort' => $sort, 'order' => $order, ]);
+            ['sort' => $sort, 'order' => $order]);
 
         $toReturn = [];
 

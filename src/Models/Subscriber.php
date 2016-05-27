@@ -1,6 +1,6 @@
 <?php
 
-namespace DivineOmega\CachetPHP\Objects;
+namespace DivineOmega\CachetPHP\Models;
 
 class Subscriber extends ModelBase
 {
