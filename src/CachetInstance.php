@@ -10,24 +10,11 @@ use GuzzleHttp\Client;
 
 class CachetInstance
 {
-    public $guzzleClient;
+    private $client;
 
-    private $baseUrl;
-    private $apiToken;
-
-    public function __construct($baseUrl, $apiToken)
+    public function __construct($client)
     {
-        if (!$baseUrl) {
-            throw new \Exception('You must specify the base URL for your Cachet instance.');
-        }
-
-        $this->baseUrl = $baseUrl;
-        $this->apiToken = $apiToken;
-
-        $this->guzzleClient = new Client([
-            'base_uri' => $baseUrl,
-            'timeout'  => 3.0,
-        ]);
+        $this->client = $client;
     }
 
     public function getApiToken()
@@ -45,22 +32,23 @@ class CachetInstance
                 ];
     }
 
+    public function client()
+    {
+      return $this->client;
+    }
+
     public function ping()
     {
-        $response = $this->guzzleClient->get('ping');
+        $response = $this->client->request('ping', 'GET');
 
         if ($response->getStatusCode() != 200) {
             throw new \Exception('cachet.php: Bad response.');
         }
 
-        $data = json_decode($response->getBody());
+        $data = $response->getData();
 
         if (!$data) {
-            throw new \Exception('cachet.php: Could not decode JSON from '.$url);
-        }
-
-        if (isset($data->data)) {
-            $data = $data->data;
+            throw new \Exception('cachet.php: No data received from ping.');
         }
 
         return $data;

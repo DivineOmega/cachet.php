@@ -57,6 +57,8 @@ class ApiV1Client implements IApiClient
             throw new CachetApiException('cachet.php: Could not decode JSON from '.$url);
         }
 
-        return new ApiResponse($data, 'data');
+        $statusCode = $response->getStatusCode();
+
+        return new ApiResponse($data, $statusCode);
     }
 }
