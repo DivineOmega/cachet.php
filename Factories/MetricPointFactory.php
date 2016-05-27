@@ -6,7 +6,7 @@ use DivineOmega\CachetPHP\Objects\MetricPoint;
 
 abstract class MetricPointFactory
 {
-    public function getAll($cachetInstance, $metric, $sort = null, $order = null)
+    public static function getAll($cachetInstance, $metric, $sort = null, $order = null)
     {
         $response = $cachetInstance->guzzleClient->get('metrics/'.$metric->id.'/points',
             ['query' => ['sort' => $sort,
@@ -30,18 +30,20 @@ abstract class MetricPointFactory
         $toReturn = [];
 
         foreach ($data as $row) {
-            $toReturn[] = new MetricPoint($cachetInstance, $metric, $row);
+            $toReturn[] = new MetricPoint($metric, $row, $cachetInstance);
         }
 
         return $toReturn;
     }
 
-    public function create($cachetInstance, $metric, $data)
+    public static function create($cachetInstance, $metric, $data)
     {
         $response = $cachetInstance->guzzleClient->get('metrics/'.$metric->id.'/points', ['json' => $data, 'headers' => $cachetInstance->getAuthHeaders()]);
 
         if ($response->getStatusCode() != 200) {
             throw new \Exception('Bad response from Cachet instance.');
         }
+
+        //todo: return the metric point instance
     }
 }

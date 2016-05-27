@@ -2,19 +2,17 @@
 
 namespace DivineOmega\CachetPHP\Objects;
 
-class MetricPoint
+class MetricPoint extends ModelBase
 {
-    private $cachetInstance = null;
-    private $metric = null;
+    public $id;
+    public $value;
+    public $metric = null;
 
-    public function __construct($cachetInstance, $metric, $row)
+    public function __construct(Metric $metric, $row, CachetInstance $cachetInstance = null)
     {
-        $this->cachetInstance = $cachetInstance;
         $this->metric = $metric;
 
-        foreach ($row as $key => $value) {
-            $this->$key = $value;
-        }
+        parent::__construct($row, $cachetInstance);
     }
 
     public function delete()

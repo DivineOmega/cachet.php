@@ -4,18 +4,13 @@ namespace DivineOmega\CachetPHP\Objects;
 
 use DivineOmega\CachetPHP\Factories\MetricPointFactory;
 
-class Metric
+class Metric extends ModelBase
 {
-    private $cachetInstance = null;
-
-    public function __construct($cachetInstance, $row)
-    {
-        $this->cachetInstance = $cachetInstance;
-
-        foreach ($row as $key => $value) {
-            $this->$key = $value;
-        }
-    }
+    public $id;
+    public $name;
+    public $description;
+    public $suffix;
+    public $display_chart;
 
     public function getAllMetricPoints($sort = null, $order = null)
     {

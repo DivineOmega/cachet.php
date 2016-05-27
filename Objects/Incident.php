@@ -2,18 +2,14 @@
 
 namespace DivineOmega\CachetPHP\Objects;
 
-class Incident
+class Incident extends ModelBase
 {
-    private $cachetInstance = null;
-
-    public function __construct($cachetInstance, $row)
-    {
-        $this->cachetInstance = $cachetInstance;
-
-        foreach ($row as $key => $value) {
-            $this->$key = $value;
-        }
-    }
+    public $id;
+    public $name;
+    public $message;
+    public $status;
+    public $visible;
+    public $component_id;
 
     public function delete()
     {

@@ -2,18 +2,9 @@
 
 namespace DivineOmega\CachetPHP\Objects;
 
-class Subscriber
+class Subscriber extends ModelBase
 {
-    private $cachetInstance = null;
-
-    public function __construct($cachetInstance, $row)
-    {
-        $this->cachetInstance = $cachetInstance;
-
-        foreach ($row as $key => $value) {
-            $this->$key = $value;
-        }
-    }
+    protected $id;
 
     public function delete()
     {

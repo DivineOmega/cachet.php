@@ -2,18 +2,15 @@
 
 namespace DivineOmega\CachetPHP\Objects;
 
-class Component
+class Component extends ModelBase
 {
-    private $cachetInstance = null;
-
-    public function __construct($cachetInstance, $row)
-    {
-        $this->cachetInstance = $cachetInstance;
-
-        foreach ($row as $key => $value) {
-            $this->$key = $value;
-        }
-    }
+    public $id;
+    public $name;
+    public $description;
+    public $link;
+    public $status;
+    public $order;
+    public $group_id;
 
     public function delete()
     {

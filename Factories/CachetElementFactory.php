@@ -2,6 +2,7 @@
 
 namespace DivineOmega\CachetPHP\Factories;
 
+use DivineOmega\CachetPHP\Objects\CachetInstance;
 use DivineOmega\CachetPHP\Objects\Component;
 use DivineOmega\CachetPHP\Objects\Incident;
 use DivineOmega\CachetPHP\Objects\Metric;
@@ -9,7 +10,7 @@ use DivineOmega\CachetPHP\Objects\Subscriber;
 
 abstract class CachetElementFactory
 {
-    public function getAll($cachetInstance, $type, $sort = null, $order = null, $authorisationRequired = false)
+    public static function getAll(CachetInstance $cachetInstance, $type, $sort = null, $order = null, $authorisationRequired = false)
     {
         $requestParameters = ['query' => ['sort' => $sort, 'order' => $order]];
 
@@ -39,19 +40,19 @@ abstract class CachetElementFactory
             switch ($type) {
 
                 case 'components':
-                    $toReturn[] = new Component($cachetInstance, $row);
+                    $toReturn[] = new Component($row, $cachetInstance);
                     break;
 
                 case 'incidents':
-                    $toReturn[] = new Incident($cachetInstance, $row);
+                    $toReturn[] = new Incident($row, $cachetInstance);
                     break;
 
                 case 'metrics':
-                    $toReturn[] = new Metric($cachetInstance, $row);
+                    $toReturn[] = new Metric($row, $cachetInstance);
                     break;
 
                 case 'subscribers':
-                    $toReturn[] = new Subscriber($cachetInstance, $row);
+                    $toReturn[] = new Subscriber($row, $cachetInstance);
                     break;
 
                 default:
@@ -63,7 +64,7 @@ abstract class CachetElementFactory
         return $toReturn;
     }
 
-    public function create($cachetInstance, $type, $data)
+    public static function create($cachetInstance, $type, $data)
     {
         $requestParameters = ['json' => $data, 'headers' => $cachetInstance->getAuthHeaders()];
 
