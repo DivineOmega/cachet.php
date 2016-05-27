@@ -2,7 +2,7 @@
 
 namespace DivineOmega\CachetPHP\Factories;
 
-use DivineOmega\CachetPHP\Objects\CachetInstance;
+use DivineOmega\CachetPHP\CachetInstance;
 use DivineOmega\CachetPHP\Objects\Component;
 use DivineOmega\CachetPHP\Objects\Incident;
 use DivineOmega\CachetPHP\Objects\Metric;

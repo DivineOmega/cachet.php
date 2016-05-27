@@ -2,11 +2,12 @@
 
 namespace DivineOmega\CachetPHP\Factories;
 
+use DivineOmega\CachetPHP\CachetInstance;
 use DivineOmega\CachetPHP\Objects\MetricPoint;
 
 abstract class MetricPointFactory
 {
-    public static function getAll($cachetInstance, $metric, $sort = null, $order = null)
+    public static function getAll(CachetInstance $cachetInstance, $metric, $sort = null, $order = null)
     {
         $response = $cachetInstance->guzzleClient->get('metrics/'.$metric->id.'/points',
             ['query' => ['sort' => $sort,
@@ -36,7 +37,7 @@ abstract class MetricPointFactory
         return $toReturn;
     }
 
-    public static function create($cachetInstance, $metric, $data)
+    public static function create(CachetInstance $cachetInstance, $metric, $data)
     {
         $response = $cachetInstance->guzzleClient->get('metrics/'.$metric->id.'/points', ['json' => $data, 'headers' => $cachetInstance->getAuthHeaders()]);
 

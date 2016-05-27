@@ -2,7 +2,7 @@
 
 namespace DivineOmega\CachetPHP\Factories;
 
-use DivineOmega\CachetPHP\Objects\CachetInstance;
+use DivineOmega\CachetPHP\CachetInstance;
 
 abstract class CachetInstanceFactory
 {

@@ -2,6 +2,8 @@
 namespace DivineOmega\CachetPHP\Objects;
 
 
+use DivineOmega\CachetPHP\CachetInstance;
+
 abstract class ModelBase
 {
 	protected $cachetInstance = null;

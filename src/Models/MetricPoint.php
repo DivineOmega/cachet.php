@@ -2,6 +2,8 @@
 
 namespace DivineOmega\CachetPHP\Objects;
 
+use DivineOmega\CachetPHP\CachetInstance;
+
 class MetricPoint extends ModelBase
 {
     public $id;
