@@ -8,8 +8,10 @@ class Incident extends ModelBase
     public $name;
     public $message;
     public $status;
-    public $visible;
+    public $visible = true;
     public $component_id;
+    public $component_status;
+    public $notify;
 
     public function delete()
     {
