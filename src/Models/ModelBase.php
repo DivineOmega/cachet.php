@@ -8,7 +8,7 @@ abstract class ModelBase
 {
     protected $cachetInstance = null;
 
-    public function __construct($row, CachetInstance $cachetInstance = null)
+    public function __construct($row = [], CachetInstance $cachetInstance = null)
     {
         $this->cachetInstance = $cachetInstance;
 

@@ -10,7 +10,7 @@ class MetricPoint extends ModelBase
     public $value;
     public $metric = null;
 
-    public function __construct(Metric $metric, $row, CachetInstance $cachetInstance = null)
+    public function __construct(Metric $metric, $row = [], CachetInstance $cachetInstance = null)
     {
         $this->metric = $metric;
 
