@@ -29,11 +29,6 @@ class Metric extends ModelBase
         $this->cachetInstance->client()->request('metrics/'.$this->id, $queryParams, 'PUT');
     }
 
-    public function createMetricPoint($data)
-    {
-        return MetricPointFactory::create($this->cachetInstance, $this, $data);
-    }
-
     protected function getApiType()
     {
         return 'metrics';
