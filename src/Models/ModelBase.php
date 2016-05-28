@@ -21,21 +21,36 @@ abstract class ModelBase
         }
     }
 
-    public function update()
+    public function update(CachetInstance $cachetInstance = null)
     {
-        $this->cachetInstance->client()->request($this->getApiType().'/'.$this->getId(), $this->getParams(), 'PUT');
+        $this->instance($cachetInstance)->client()->request($this->getApiType().'/'.$this->getId(), $this->getParams(), 'PUT');
     }
 
-    public function create(){
-        $response = $this->cachetInstance->client()->request($this->getApiType(), $this->getParams(), 'POST');
+    public function create(CachetInstance $cachetInstance = null){
+        $response = $this->instance($cachetInstance)->client()->request($this->getApiType(), $this->getParams(), 'POST');
 
         $row = $response->getData();
 
         return new static($row);
     }
 
-    public function delete()
+    public function delete(CachetInstance $cachetInstance = null)
     {
-        $this->cachetInstance->client()->request($this->getApiType().'/'.$this->getId(), null, 'DELETE');
+        $this->instance($cachetInstance)->client()->request($this->getApiType().'/'.$this->getId(), null, 'DELETE');
+    }
+
+    /**
+     * @param CachetInstance|null $cachetInstance
+     * @return CachetInstance
+     */
+    protected function instance(CachetInstance $cachetInstance = null)
+    {
+        if($cachetInstance === null){
+            $cachetInstance = $this->cachetInstance;
+            if($cachetInstance === null){
+                throw new \InvalidArgumentException('$cachetInstance is null, and no model instance provided');
+            }
+        }
+        return $cachetInstance;
     }
 }
