@@ -17,13 +17,13 @@ class MetricPoint extends ModelBase
         parent::__construct($row, $cachetInstance);
     }
 
-    public function save()
+    protected function getParams()
     {
         $queryParams = [];
 
         $queryParams['value'] = $this->value;
 
-        $this->cachetInstance->client()->request('metrics/'.$this->metric->id.'/points/'.$this->id, $queryParams, 'PUT');
+        return $queryParams;
     }
 
     protected function getApiType()

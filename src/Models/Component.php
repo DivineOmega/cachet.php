@@ -12,7 +12,7 @@ class Component extends ModelBase
     public $order;
     public $group_id;
 
-    public function save()
+    protected function getParams()
     {
         $queryParams = [];
 
@@ -23,7 +23,7 @@ class Component extends ModelBase
         $queryParams['order'] = $this->order;
         $queryParams['group_id'] = $this->group_id;
 
-        $this->cachetInstance->client()->request('components/'.$this->id, $queryParams, 'PUT');
+        return $queryParams;
     }
 
     protected function getApiType()

@@ -17,7 +17,7 @@ class Metric extends ModelBase
         return MetricPointFactory::getAll($this->cachetInstance, $this, $sort, $order);
     }
 
-    public function save()
+    protected function getParams()
     {
         $queryParams = [];
 
@@ -26,7 +26,7 @@ class Metric extends ModelBase
         $queryParams['suffix'] = $this->suffix;
         $queryParams['display_chart'] = $this->display_chart;
 
-        $this->cachetInstance->client()->request('metrics/'.$this->id, $queryParams, 'PUT');
+        return $queryParams;
     }
 
     protected function getApiType()

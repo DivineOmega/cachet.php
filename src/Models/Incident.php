@@ -13,8 +13,7 @@ class Incident extends ModelBase
     public $component_status;
     public $notify;
 
-
-    public function save()
+    protected function getParams()
     {
         $queryParams = [];
 
@@ -24,7 +23,7 @@ class Incident extends ModelBase
         $queryParams['visible'] = $this->visible;
         $queryParams['component_id'] = $this->component_id;
 
-        $this->cachetInstance->client()->request('incidents/'.$this->id, $queryParams, 'PUT');
+        return $queryParams;
     }
 
     protected function getApiType()

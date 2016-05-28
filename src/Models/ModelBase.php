@@ -8,6 +8,7 @@ abstract class ModelBase
 {
     protected $cachetInstance = null;
 
+    protected abstract function getParams();
     protected abstract function getApiType();
     public abstract function getId();
 
@@ -20,8 +21,13 @@ abstract class ModelBase
         }
     }
 
+    public function update()
+    {
+        $this->cachetInstance->client()->request($this->getApiType().'/'.$this->getId(), $this->getParams(), 'PUT');
+    }
+
     public function create(){
-        $response = $this->cachetInstance->client()->request($this->getApiType(), $this, 'POST');
+        $response = $this->cachetInstance->client()->request($this->getApiType(), $this->getParams(), 'POST');
 
         $row = $response->getData();
 
