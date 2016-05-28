@@ -10,9 +10,4 @@ abstract class SubscriberFactory
     {
         return CachetElementFactory::getAll($cachetInstance, 'subscribers', $sort, $order, true);
     }
-
-    public static function create(CachetInstance $cachetInstance, $data)
-    {
-        return CachetElementFactory::create($cachetInstance, 'subscribers', $data);
-    }
 }

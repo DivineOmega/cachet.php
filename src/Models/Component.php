@@ -12,11 +12,6 @@ class Component extends ModelBase
     public $order;
     public $group_id;
 
-    public function delete()
-    {
-        $this->cachetInstance->client()->request('components/'.$this->id, null, 'DELETE');
-    }
-
     public function save()
     {
         $queryParams = [];
@@ -29,5 +24,15 @@ class Component extends ModelBase
         $queryParams['group_id'] = $this->group_id;
 
         $this->cachetInstance->client()->request('components/'.$this->id, $queryParams, 'PUT');
+    }
+
+    protected function getApiType()
+    {
+        return 'components';
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 }

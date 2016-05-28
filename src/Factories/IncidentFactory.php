@@ -10,9 +10,4 @@ abstract class IncidentFactory
     {
         return CachetElementFactory::getAll($cachetInstance, 'incidents', $sort, $order);
     }
-
-    public static function create(CachetInstance $cachetInstance, $data)
-    {
-        return CachetElementFactory::create($cachetInstance, 'incidents', $data);
-    }
 }

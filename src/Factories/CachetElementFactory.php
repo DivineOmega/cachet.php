@@ -43,37 +43,4 @@ abstract class CachetElementFactory
 
         return $toReturn;
     }
-
-    public static function create(CachetInstance $cachetInstance, $type, $data)
-    {
-        $response = $cachetInstance->client()->request($type, $data, 'POST');
-
-        $toReturn = null;
-        $row = $response->getData();
-
-        switch ($type) {
-
-            case 'components':
-                $toReturn = new Component($row, $cachetInstance);
-                break;
-
-            case 'incidents':
-                $toReturn = new Incident($row, $cachetInstance);
-                break;
-
-            case 'metrics':
-                $toReturn = new Metric($row, $cachetInstance);
-                break;
-
-            case 'subscribers':
-                $toReturn = new Subscriber($row, $cachetInstance);
-                break;
-
-            default:
-                throw new \Exception('Invalid Cachet element type specified.');
-                break;
-            }
-
-        return $toReturn;
-    }
 }

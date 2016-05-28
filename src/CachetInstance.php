@@ -2,6 +2,7 @@
 
 namespace DivineOmega\CachetPHP;
 
+use DivineOmega\CachetPHP\Client\IApiClient;
 use DivineOmega\CachetPHP\Factories\ComponentFactory;
 use DivineOmega\CachetPHP\Factories\IncidentFactory;
 use DivineOmega\CachetPHP\Factories\MetricFactory;
@@ -36,6 +37,9 @@ class CachetInstance
                 ];
     }
 
+    /**
+     * @return IApiClient
+     */
     public function client()
     {
         return $this->client;

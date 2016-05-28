@@ -17,11 +17,6 @@ class Metric extends ModelBase
         return MetricPointFactory::getAll($this->cachetInstance, $this, $sort, $order);
     }
 
-    public function delete()
-    {
-        $this->cachetInstance->client()->request('metrics/'.$this->id, null, 'DELETE');
-    }
-
     public function save()
     {
         $queryParams = [];
@@ -37,5 +32,15 @@ class Metric extends ModelBase
     public function createMetricPoint($data)
     {
         return MetricPointFactory::create($this->cachetInstance, $this, $data);
+    }
+
+    protected function getApiType()
+    {
+        return 'metrics';
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 }

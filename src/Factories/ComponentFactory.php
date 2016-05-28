@@ -10,9 +10,4 @@ abstract class ComponentFactory
     {
         return CachetElementFactory::getAll($cachetInstance, 'components', $sort, $order);
     }
-
-    public static function create(CachetInstance $cachetInstance, $data)
-    {
-        return CachetElementFactory::create($cachetInstance, 'components', $data);
-    }
 }

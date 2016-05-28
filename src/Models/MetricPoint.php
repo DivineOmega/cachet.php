@@ -17,11 +17,6 @@ class MetricPoint extends ModelBase
         parent::__construct($row, $cachetInstance);
     }
 
-    public function delete()
-    {
-        $this->cachetInstance->client()->request('metrics/'.$this->metric->id.'/points/'.$this->id, null, 'DELETE');
-    }
-
     public function save()
     {
         $queryParams = [];
@@ -29,5 +24,15 @@ class MetricPoint extends ModelBase
         $queryParams['value'] = $this->value;
 
         $this->cachetInstance->client()->request('metrics/'.$this->metric->id.'/points/'.$this->id, $queryParams, 'PUT');
+    }
+
+    protected function getApiType()
+    {
+        return 'metrics';
+    }
+
+    public function getId()
+    {
+        return $this->metric->id.'/points/'.$this->id;
     }
 }
