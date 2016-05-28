@@ -6,7 +6,7 @@ class Subscriber extends ModelBase
 {
     protected $id;
 
-    protected function getApiType()
+    protected static function getApiType()
     {
         return 'subscribers';
     }

@@ -26,7 +26,7 @@ class Incident extends ModelBase
         return $queryParams;
     }
 
-    protected function getApiType()
+    protected static function getApiType()
     {
         return 'incidents';
     }

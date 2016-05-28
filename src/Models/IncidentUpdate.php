@@ -2,6 +2,8 @@
 
 namespace DivineOmega\CachetPHP\Models;
 
+use DivineOmega\CachetPHP\CachetInstance;
+
 class IncidentUpdate extends ModelBase
 {
     public $id;
@@ -19,9 +21,21 @@ class IncidentUpdate extends ModelBase
         return $queryParams;
     }
 
-    protected function getApiType()
+    protected static function getApiType()
     {
         return 'incidents';
+    }
+
+    /**
+     * @param string|Incident $incident
+     * @param string $update_id
+     * @param CachetInstance $cachetInstance
+     * @return static
+     */
+    static function fromId($incident, $update_id, CachetInstance $cachetInstance){
+        if($incident instanceof Incident) $incident = $incident->id;
+
+        return parent::fromId($incident.'/updates/'.$update_id, $cachetInstance);
     }
 
     public function getId()

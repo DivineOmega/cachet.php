@@ -9,7 +9,13 @@ abstract class ModelBase
     protected $cachetInstance = null;
 
     protected abstract function getParams();
-    protected abstract function getApiType();
+
+    /**
+     * @return string
+     */
+    protected static function getApiType(){
+        throw new \RuntimeException('API Type for model '.get_called_class().' not defined');
+    }
     public abstract function getId();
 
     public function __construct($row = [], CachetInstance $cachetInstance = null)
@@ -23,11 +29,11 @@ abstract class ModelBase
 
     public function update(CachetInstance $cachetInstance = null)
     {
-        $this->instance($cachetInstance)->client()->request($this->getApiType().'/'.$this->getId(), $this->getParams(), 'PUT');
+        $this->instance($cachetInstance)->client()->request(static::getApiType().'/'.$this->getId(), $this->getParams(), 'PUT');
     }
 
     public function create(CachetInstance $cachetInstance = null){
-        $response = $this->instance($cachetInstance)->client()->request($this->getApiType(), $this->getParams(), 'POST');
+        $response = $this->instance($cachetInstance)->client()->request(static::getApiType(), $this->getParams(), 'POST');
 
         $row = $response->getData();
 
@@ -36,7 +42,14 @@ abstract class ModelBase
 
     public function delete(CachetInstance $cachetInstance = null)
     {
-        $this->instance($cachetInstance)->client()->request($this->getApiType().'/'.$this->getId(), null, 'DELETE');
+        $this->instance($cachetInstance)->client()->request(static::getApiType().'/'.$this->getId(), null, 'DELETE');
+    }
+
+    public static function fromId($id, CachetInstance $cachetInstance){
+        $response = $cachetInstance->client()->request(static::getApiType().'/'.$id, null, 'GET');
+        if($response->getData()){
+            return new static($response->getData());
+        }
     }
 
     /**
