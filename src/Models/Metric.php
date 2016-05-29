@@ -17,18 +17,6 @@ class Metric extends ModelBase
         return MetricPointFactory::getAll($this->cachetInstance, $this, $sort, $order);
     }
 
-    protected function getParams()
-    {
-        $queryParams = [];
-
-        $queryParams['name'] = $this->name;
-        $queryParams['description'] = $this->description;
-        $queryParams['suffix'] = $this->suffix;
-        $queryParams['display_chart'] = $this->display_chart;
-
-        return $queryParams;
-    }
-
     protected static function getApiType()
     {
         return 'metrics';

@@ -10,15 +10,10 @@ class IncidentUpdate extends ModelBase
     public $status;
     public $message;
     public $incident;
+    public $component_status;
 
-    protected function getParams(){
-        $queryParams = [];
-
-        $queryParams['incident'] = $this->incident;
-        $queryParams['message'] = $this->message;
-        $queryParams['status'] = $this->status;
-
-        return $queryParams;
+    protected function getModelUrl(){
+        return static::getApiType().'/'.$this->incident.'/updates';
     }
 
     protected static function getApiType()
@@ -40,6 +35,6 @@ class IncidentUpdate extends ModelBase
 
     public function getId()
     {
-        return $this->incident.'/updates/'.$this->id;
+        return $this->id;
     }
 }

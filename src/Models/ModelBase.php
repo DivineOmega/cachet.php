@@ -8,7 +8,9 @@ abstract class ModelBase
 {
     protected $cachetInstance = null;
 
-    protected abstract function getParams();
+    protected function getModelUrl(){
+        return static::getApiType();
+    }
 
     /**
      * @return string
@@ -29,11 +31,11 @@ abstract class ModelBase
 
     public function update(CachetInstance $cachetInstance = null)
     {
-        $this->instance($cachetInstance)->client()->request(static::getApiType().'/'.$this->getId(), $this->getParams(), 'PUT');
+        $this->instance($cachetInstance)->client()->request($this->getModelUrl().'/'.$this->getId(), $this, 'PUT');
     }
 
     public function create(CachetInstance $cachetInstance = null){
-        $response = $this->instance($cachetInstance)->client()->request(static::getApiType(), $this->getParams(), 'POST');
+        $response = $this->instance($cachetInstance)->client()->request($this->getModelUrl(), $this, 'POST');
 
         $row = $response->getData();
 
@@ -42,7 +44,7 @@ abstract class ModelBase
 
     public function delete(CachetInstance $cachetInstance = null)
     {
-        $this->instance($cachetInstance)->client()->request(static::getApiType().'/'.$this->getId(), null, 'DELETE');
+        $this->instance($cachetInstance)->client()->request($this->getModelUrl().'/'.$this->getId(), null, 'DELETE');
     }
 
     public static function fromId($id, CachetInstance $cachetInstance){

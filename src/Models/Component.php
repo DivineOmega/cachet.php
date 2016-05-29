@@ -12,20 +12,6 @@ class Component extends ModelBase
     public $order;
     public $group_id;
 
-    protected function getParams()
-    {
-        $queryParams = [];
-
-        $queryParams['name'] = $this->name;
-        $queryParams['description'] = $this->description;
-        $queryParams['link'] = $this->link;
-        $queryParams['status'] = $this->status;
-        $queryParams['order'] = $this->order;
-        $queryParams['group_id'] = $this->group_id;
-
-        return $queryParams;
-    }
-
     protected static function getApiType()
     {
         return 'components';

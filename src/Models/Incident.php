@@ -13,19 +13,6 @@ class Incident extends ModelBase
     public $component_status;
     public $notify;
 
-    protected function getParams()
-    {
-        $queryParams = [];
-
-        $queryParams['name'] = $this->name;
-        $queryParams['message'] = $this->message;
-        $queryParams['status'] = $this->status;
-        $queryParams['visible'] = $this->visible;
-        $queryParams['component_id'] = $this->component_id;
-
-        return $queryParams;
-    }
-
     protected static function getApiType()
     {
         return 'incidents';

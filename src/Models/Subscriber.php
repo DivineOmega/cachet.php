@@ -15,13 +15,4 @@ class Subscriber extends ModelBase
     {
         return $this->id;
     }
-
-    protected function getParams()
-    {
-        $queryParams = [];
-
-        //todo
-
-        return $queryParams;
-    }
 }
