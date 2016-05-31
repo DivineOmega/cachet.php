@@ -11,6 +11,7 @@ class IncidentUpdate extends ModelBase
     public $message;
     public $incident;
     public $component_status;
+    public $notify;
 
     protected function getModelUrl(){
         return static::getApiType().'/'.$this->incident.'/updates';
