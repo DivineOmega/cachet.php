@@ -15,7 +15,7 @@ class ApiV1Client implements IApiClient
         $this->apiToken = $apiToken;
 
         $this->guzzleClient = new Client([
-            'base_uri' => $apiUrl.'/v1/',
+            'base_uri' => rtrim($apiUrl,'/').'/v1/',
             'timeout'  => 3.0,
         ]);
     }

@@ -8,24 +8,18 @@ class Incident extends ModelBase
     public $name;
     public $message;
     public $status;
-    public $visible;
+    public $visible = true;
     public $component_id;
+    public $component_status;
+    public $notify;
 
-    public function delete()
+    protected static function getApiType()
     {
-        $this->cachetInstance->client()->request('incidents/'.$this->id, null, 'DELETE');
+        return 'incidents';
     }
 
-    public function save()
+    public function getId()
     {
-        $queryParams = [];
-
-        $queryParams['name'] = $this->name;
-        $queryParams['message'] = $this->message;
-        $queryParams['status'] = $this->status;
-        $queryParams['visible'] = $this->visible;
-        $queryParams['component_id'] = $this->component_id;
-
-        $this->cachetInstance->client()->request('incidents/'.$this->id, $queryParams, 'PUT');
+        return $this->id;
     }
 }

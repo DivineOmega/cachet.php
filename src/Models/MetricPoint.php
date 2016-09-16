@@ -10,24 +10,29 @@ class MetricPoint extends ModelBase
     public $value;
     public $metric = null;
 
-    public function __construct(Metric $metric, $row, CachetInstance $cachetInstance = null)
+    public function __construct(Metric $metric, $row = [], CachetInstance $cachetInstance = null)
     {
         $this->metric = $metric;
 
         parent::__construct($row, $cachetInstance);
     }
 
-    public function delete()
-    {
-        $this->cachetInstance->client()->request('metrics/'.$this->metric->id.'/points/'.$this->id, null, 'DELETE');
-    }
-
-    public function save()
+    protected function getParams()
     {
         $queryParams = [];
 
         $queryParams['value'] = $this->value;
 
-        $this->cachetInstance->client()->request('metrics/'.$this->metric->id.'/points/'.$this->id, $queryParams, 'PUT');
+        return $queryParams;
+    }
+
+    protected static function getApiType()
+    {
+        return 'metrics';
+    }
+
+    public function getId()
+    {
+        return $this->metric->id.'/points/'.$this->id;
     }
 }

@@ -12,22 +12,13 @@ class Component extends ModelBase
     public $order;
     public $group_id;
 
-    public function delete()
+    protected static function getApiType()
     {
-        $this->cachetInstance->client()->request('components/'.$this->id, null, 'DELETE');
+        return 'components';
     }
 
-    public function save()
+    public function getId()
     {
-        $queryParams = [];
-
-        $queryParams['name'] = $this->name;
-        $queryParams['description'] = $this->description;
-        $queryParams['link'] = $this->link;
-        $queryParams['status'] = $this->status;
-        $queryParams['order'] = $this->order;
-        $queryParams['group_id'] = $this->group_id;
-
-        $this->cachetInstance->client()->request('components/'.$this->id, $queryParams, 'PUT');
+        return $this->id;
     }
 }

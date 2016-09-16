@@ -6,8 +6,13 @@ class Subscriber extends ModelBase
 {
     protected $id;
 
-    public function delete()
+    protected static function getApiType()
     {
-        $this->cachetInstance->client()->request('subscribers/'.$this->id, null, 'DELETE');
+        return 'subscribers';
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 }

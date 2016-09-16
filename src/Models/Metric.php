@@ -17,25 +17,13 @@ class Metric extends ModelBase
         return MetricPointFactory::getAll($this->cachetInstance, $this, $sort, $order);
     }
 
-    public function delete()
+    protected static function getApiType()
     {
-        $this->cachetInstance->client()->request('metrics/'.$this->id, null, 'DELETE');
+        return 'metrics';
     }
 
-    public function save()
+    public function getId()
     {
-        $queryParams = [];
-
-        $queryParams['name'] = $this->name;
-        $queryParams['description'] = $this->description;
-        $queryParams['suffix'] = $this->suffix;
-        $queryParams['display_chart'] = $this->display_chart;
-
-        $this->cachetInstance->client()->request('metrics/'.$this->id, $queryParams, 'PUT');
-    }
-
-    public function createMetricPoint($data)
-    {
-        return MetricPointFactory::create($this->cachetInstance, $this, $data);
+        return $this->id;
     }
 }
