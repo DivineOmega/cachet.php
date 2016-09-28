@@ -91,9 +91,9 @@ The following example shows how to change the name and status of a component, th
 $components = $cachetInstance->getAllComponents();
 
 // Change component details
-$component[0]->name = 'My awesome component';
-$component[0]->status = 1;
-$component[0]->save();
+$components[0]->name = 'My awesome component';
+$components[0]->status = 1;
+$components[0]->save();
 ```
 
 ## Deleting Cachet elements
