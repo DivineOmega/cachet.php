@@ -123,19 +123,8 @@ $incidents = $cachetInstance->getAllIncidents();
 $incidents[0]->delete();
 ```
 
-# Users of version 0.1
-
-Please be aware that newer versions of the cachet.php library have a completely diferent (and improved!) syntax. The core functionality has also been redesigned to be significantly more object orientated, with factories handling the core Cachet element creation and retrieveal, and objects representing these elements and their properties.
-
-If you wish to convert your code to this version, please review the examples shown in this readme file.
-
-# Dependencies
-
-* PHP >= 5.3.0
-* Guzzle ~6.0
-
 # Contact
 
 If you've found a bug or a new feature, please [report it as a GitHub issue](https://github.com/DivineOmega/cachet.php/issues).
 
-For other queries, I'm available on Twitter ([Jordan Hall](https://twitter.com/divineomega)) or you can [contact me here](http://jordanhall.co.uk/about-jordan-hall/contact/).
+For other queries, I'm available on Twitter ([Jordan Hall](https://twitter.com/divineomega)).
