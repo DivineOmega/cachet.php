@@ -94,6 +94,18 @@ foreach ($incidents as $incident) {
     echo "\n";
 }
 
+// Get incident updates for first incident (Cachet 2.4.0 or above required)
+$incidentUpdates = $incidents[0]->getAllIncidentUpdates();
+
+// Display incident updates
+echo "\n";
+echo '*** Incident updates (for Incident ID '.$incidentUpdates[0]->id.') ***';
+echo "\n";
+foreach ($incidentUpdates as $incidentUpdate) {
+    echo $incidentUpdate->id.' - '.$incidentUpdate->message;
+    echo "\n";
+}
+
 // Get metrics
 $metrics = $cachetInstance->getAllMetrics();
 

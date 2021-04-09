@@ -31,11 +31,12 @@ $cachetInstance = CachetInstanceFactory::create('https://demo.cachethq.io/api/v1
 Retrieving data from the various elements of your Cachet instance is easy. Just call the appropriate getter method on your ```$cachetInstance``` object. The Cachet install will be contacted and an array of request appropriate objects be returned.
 
 ```php
-$components = $cachetInstance->getAllComponents();      // Components
-$incidents = $cachetInstance->getAllIncidents();        // Incidents
-$metrics = $cachetInstance->getAllMetrics();            // Metrics
-$metricPoints = $metrics[0]->getAllMetricPoints();      // Metric Points
-$subscribers = $cachetInstance->getAllSubscribers();    // Subscribers
+$components = $cachetInstance->getAllComponents();         // Components
+$incidents = $cachetInstance->getAllIncidents();           // Incidents
+$incidentUpdates = $incidents[0]->getAllIncidentUpdates(); // Incident Updates (Cachet 2.4.0 or above required)
+$metrics = $cachetInstance->getAllMetrics();               // Metrics
+$metricPoints = $metrics[0]->getAllMetricPoints();         // Metric Points
+$subscribers = $cachetInstance->getAllSubscribers();       // Subscribers
 ```
 
 ### Sorting Cachet elements
@@ -51,7 +52,7 @@ $components = $cachetInstance->getAllComponents('name', 'asc');
 
 Reading data from retrieved Cachet element objects is easy. Just access their public member variables.
 
-Here's an example of outputing the id, name, description and status of a Cachet component.
+Here's an example of outputting the id, name, description and status of a Cachet component.
 
 ```php
 // Get components
@@ -78,6 +79,21 @@ $componentDetails = ['name' => 'Test Component '.rand(1, 99999), 'status' => 1];
 $component = $cachetInstance->createComponent($componentDetails);
 
 echo $component->id.' - '.$component->name.' - '.$component->description.' - '.$component->status;
+```
+
+The more comprehensive example below shows how to create an incident and add an incident update to it. 
+Please note that Cachet 2.4.0 or above required if you wish to use incident updates.
+
+```php
+$incidentDetails = ['name' => 'Test Incident '.rand(1, 99999), 'message' => 'Incident message '.rand(1, 99999), 'status' => 1, 'visible' => 1];
+
+$incident = $cachetInstance->createIncident($incidentDetails);
+
+$incidentUpdateDetails = ['status' => 2, 'message' => 'Test incident update '.rand(1, 99999)];
+
+$incidentUpdate = $incident->createIncidentUpdate($incidentUpdateDetails);
+
+echo $incidentUpdate->id.' - '.$incidentUpdate->incident_id.' - '.$incidentUpdate->status.' - '.$incidentUpdate->message;
 ```
 
 ## Updating Cachet elements
