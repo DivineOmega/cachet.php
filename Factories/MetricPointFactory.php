@@ -38,7 +38,7 @@ abstract class MetricPointFactory
 
     public function create($cachetInstance, $metric, $data)
     {
-        $response = $cachetInstance->guzzleClient->get('metrics/'.$metric->id.'/points', ['json' => $data, 'headers' => $cachetInstance->getAuthHeaders()]);
+        $response = $cachetInstance->guzzleClient->post('metrics/'.$metric->id.'/points', ['json' => $data, 'headers' => $cachetInstance->getAuthHeaders()]);
 
         if ($response->getStatusCode() != 200) {
             throw new \Exception('Bad response from Cachet instance.');
