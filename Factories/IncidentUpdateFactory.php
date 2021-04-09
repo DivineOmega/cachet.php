@@ -31,7 +31,7 @@ abstract class IncidentUpdateFactory
         $toReturn = [];
 
         foreach ($data as $row) {
-            $toReturn[] = new IncidentUpdate($cachetInstance, $incident, $row);
+            $toReturn[] = new IncidentUpdate($cachetInstance, $row);
         }
 
         return $toReturn;
