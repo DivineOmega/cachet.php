@@ -2,6 +2,8 @@
 
 namespace DivineOmega\CachetPHP\Objects;
 
+use DivineOmega\CachetPHP\Factories\IncidentUpdateFactory;
+
 class Incident
 {
     private $cachetInstance = null;
@@ -32,5 +34,15 @@ class Incident
 
         $this->cachetInstance->guzzleClient->put('incidents/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders(),
             'query' => $queryParams, ]);
+    }
+
+    public function getAllIncidentUpdates($sort = null, $order = null)
+    {
+        return IncidentUpdateFactory::getAll($this->cachetInstance, $this, $sort, $order);
+    }
+
+    public function createIncidentUpdate($data)
+    {
+        return IncidentUpdateFactory::create($this->cachetInstance, $this, $data);
     }
 }

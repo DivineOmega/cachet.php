@@ -4,7 +4,14 @@ require_once 'vendor/autoload.php';
 
 use \DivineOmega\CachetPHP\Factories\CachetInstanceFactory;
 
-$cachetInstance = CachetInstanceFactory::create('https://demo.cachethq.io/api/v1/', '9yMHsdioQosnyVK4iCVR');
+$cachetInstance = CachetInstanceFactory::create('http://cachet.test/api/v1/', 'mm634LcVtLDHlsRWARm0');
+
+// Check if Cachet instance is working correctly
+if ($cachetInstance->isWorking()) {
+    echo "\n";
+    echo '*** Cachet instance working fine! ***';
+    echo "\n";
+}
 
 // Add component
 echo "\n";
@@ -17,12 +24,27 @@ $component = $cachetInstance->createComponent($componentDetails);
 echo $component->id.' - '.$component->name.' - '.$component->description.' - '.$component->status;
 echo "\n";
 
-// Check if Cachet instance is working correctly
-if ($cachetInstance->isWorking()) {
-    echo "\n";
-    echo '*** Cachet instance working fine! ***';
-    echo "\n";
-}
+// Add incident
+echo "\n";
+echo '*** Add Incident ***';
+echo "\n";
+$incidentDetails = ['name' => 'Test Incident '.rand(1, 99999), 'message' => 'Incident message '.rand(1, 99999), 'status' => 1, 'visible' => 1];
+
+$incident = $cachetInstance->createIncident($incidentDetails);
+
+echo $incident->id.' - '.$incident->name.' - '.$incident->status.' - '.$incident->visible;
+echo "\n";
+
+// Add incident update
+echo "\n";
+echo '*** Add Incident Update (Cachet 2.4.0 or above required) ***';
+echo "\n";
+$incidentUpdateDetails = ['status' => 2, 'message' => 'Test incident update '.rand(1, 99999)];
+
+$incidentUpdate = $incident->createIncidentUpdate($incidentUpdateDetails);
+
+echo $incidentUpdate->id.' - '.$incidentUpdate->incident_id.' - '.$incidentUpdate->status.' - '.$incidentUpdate->message;
+echo "\n";
 
 // Get components
 $components = $cachetInstance->getAllComponents();
