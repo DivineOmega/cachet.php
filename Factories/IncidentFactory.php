@@ -9,6 +9,11 @@ abstract class IncidentFactory
         return CachetElementFactory::getAll($cachetInstance, 'incidents', $sort, $order);
     }
 
+    public function getById($cachetInstance, $id)
+    {
+        return CachetElementFactory::getById($cachetInstance, 'incidents', $id);
+    }
+
     public function create($cachetInstance, $data)
     {
         return CachetElementFactory::create($cachetInstance, 'incidents', $data);

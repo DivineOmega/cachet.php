@@ -91,6 +91,26 @@ class CachetInstance
         return SubscriberFactory::getAll($this, $sort, $order);
     }
 
+    public function getComponentById($id)
+    {
+        return ComponentFactory::getById($this, $id);
+    }
+
+    public function getIncidentById($id)
+    {
+        return IncidentFactory::getById($this, $id);
+    }
+
+    public function getMetricById($id)
+    {
+        return MetricFactory::getById($this, $id);
+    }
+
+    public function getSubscriberById($id)
+    {
+        return SubscriberFactory::getById($this, $id);
+    }
+
     public function createComponent($data)
     {
         return ComponentFactory::create($this, $data);

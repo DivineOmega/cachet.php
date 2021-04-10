@@ -35,6 +35,9 @@ $incident = $cachetInstance->createIncident($incidentDetails);
 echo $incident->id.' - '.$incident->name.' - '.$incident->status.' - '.$incident->visible;
 echo "\n";
 
+// Get incident by id
+$incident = $cachetInstance->getIncidentById($incident->id);
+
 // Add incident update
 echo "\n";
 echo '*** Add Incident Update (Cachet 2.4.0 or above required) ***';

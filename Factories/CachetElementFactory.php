@@ -63,6 +63,54 @@ abstract class CachetElementFactory
         return $toReturn;
     }
 
+    public function getById($cachetInstance, $type, $id, $authorisationRequired = false)
+    {
+        $requestParameters = [];
+
+        if ($authorisationRequired) {
+            $requestParameters['headers'] = $cachetInstance->getAuthHeaders();
+        }
+
+        $response = $cachetInstance->guzzleClient->get($type.'/'.$id, $requestParameters);
+
+        if ($response->getStatusCode() != 200) {
+            throw new \Exception('Bad response from Cachet instance.');
+        }
+
+        $data = json_decode($response->getBody());
+
+        if (!$data) {
+            throw new \Exception('Could not decode JSON retrieved from Cachet instance.');
+        }
+
+        if (isset($data->data)) {
+            $row = $data->data;
+        }
+
+        switch ($type) {
+
+            case 'components':
+                return new Component($cachetInstance, $row);
+                break;
+
+            case 'incidents':
+                return new Incident($cachetInstance, $row);
+                break;
+
+            case 'metrics':
+                return new Metric($cachetInstance, $row);
+                break;
+
+            case 'subscribers':
+                return new Subscriber($cachetInstance, $row);
+                break;
+
+            default:
+                throw new \Exception('Invalid Cachet element type specified.');
+                break;
+        }
+    }
+
     public function create($cachetInstance, $type, $data)
     {
         $requestParameters = ['json' => $data, 'headers' => $cachetInstance->getAuthHeaders()];

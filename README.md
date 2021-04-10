@@ -36,6 +36,13 @@ $metricPoints = $metrics[0]->getAllMetricPoints();         // Metric Points
 $subscribers = $cachetInstance->getAllSubscribers();       // Subscribers
 ```
 
+To retrieve a single Cachet element by its ID, you can use code similar to the following method.
+
+```php
+// Get incident by id
+$incident = $cachetInstance->getIncidentById($incidentId);
+```
+
 ### Sorting Cachet elements
 
 If you wish to sort your results, you can use the following syntax. This works for components, incidents, metrics, metric points and subscribers.
