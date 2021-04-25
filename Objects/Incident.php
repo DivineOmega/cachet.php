@@ -31,6 +31,7 @@ class Incident
         $queryParams['status'] = $this->status;
         $queryParams['visible'] = $this->visible;
         $queryParams['component_id'] = $this->component_id;
+        $queryParams['component_status'] = $this->component_status;
 
         $this->cachetInstance->guzzleClient->put('incidents/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders(),
             'query' => $queryParams, ]);
