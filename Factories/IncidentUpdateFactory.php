@@ -40,6 +40,7 @@ abstract class IncidentUpdateFactory
     public function create($cachetInstance, $incident, $data)
     {
         $newComponentStatus = isset($data['component_status']) ? $data['component_status'] : null;
+        unset($data['component_status']);
 
         $response = $cachetInstance->guzzleClient->post('incidents/'.$incident->id.'/updates', ['json' => $data, 'headers' => $cachetInstance->getAuthHeaders()]);
 

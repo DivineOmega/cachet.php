@@ -32,7 +32,7 @@ class IncidentUpdate
 
         $this->cachetInstance->guzzleClient->put('incidents/'.$this->incident_id.'/updates/'.$this->id, ['headers' => $this->cachetInstance->getAuthHeaders(),
             'query' => $queryParams, ]);
-x``
+
         if ($this->component_status) {
             $incident = IncidentFactory::getById($this->cachetInstance, $this->incident_id);
             $incident->component_status = $this->component_status;

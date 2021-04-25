@@ -28,7 +28,8 @@ echo "\n";
 echo "\n";
 echo '*** Add Incident ***';
 echo "\n";
-$incidentDetails = ['name' => 'Test Incident '.rand(1, 99999), 'message' => 'Incident message '.rand(1, 99999), 'status' => 1, 'visible' => 1];
+$incidentDetails = ['name' => 'Test Incident '.rand(1, 99999), 'message' => 'Incident message '.rand(1, 99999), 'status' => 1, 'visible' => 1,
+    'component_id' => $component->id, 'component_status' => 1];
 
 $incident = $cachetInstance->createIncident($incidentDetails);
 
@@ -42,12 +43,19 @@ $incident = $cachetInstance->getIncidentById($incident->id);
 echo "\n";
 echo '*** Add Incident Update (Cachet 2.4.0 or above required) ***';
 echo "\n";
-$incidentUpdateDetails = ['status' => 2, 'message' => 'Test incident update '.rand(1, 99999)];
+$incidentUpdateDetails = ['status' => 2, 'message' => 'Test incident update '.rand(1, 99999), 'component_status' => 2];
 
 $incidentUpdate = $incident->createIncidentUpdate($incidentUpdateDetails);
 
 echo $incidentUpdate->id.' - '.$incidentUpdate->incident_id.' - '.$incidentUpdate->status.' - '.$incidentUpdate->message;
 echo "\n";
+
+// Update incident update
+echo "\n";
+echo '*** Update Component Status via Incident Update (Cachet 2.4.0 or above required) ***';
+echo "\n";
+$incidentUpdate->component_status = 3;
+$incidentUpdate->save();
 
 // Get components
 $components = $cachetInstance->getAllComponents();
