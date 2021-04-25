@@ -116,6 +116,41 @@ $component[0]->status = 1;
 $component[0]->save();
 ```
 
+### Updating Component Status via Incident and Incident Updates
+
+If you create an incident with a `component_id`, you can also include a `component_status` to change the
+component's status at the same time as creating the incident. See the example below.
+
+```php
+$incidentDetails = ['name' => 'Test Incident '.rand(1, 99999), 'message' => 'Incident message '.rand(1, 99999), 'status' => 1, 'visible' => 1,
+    'component_id' => 1, 'component_status' => 1];
+
+$incident = $cachetInstance->createIncident($incidentDetails);
+```
+
+When creating incident updates, you can also specify a `component_status` to change the component's status when the
+incident update is created. See the example below.
+
+```php
+$incidentUpdateDetails = ['status' => 2, 'message' => 'Test incident update '.rand(1, 99999), 'component_status' => 2];
+
+$incidentUpdate = $incident->createIncidentUpdate($incidentUpdateDetails);
+```
+
+You can also change a component status via an incident or incident update by changing the `component_status` on the 
+related object and saving, as shown below in the exmaples below. Note that this will only work if the incident was
+created with an assoicated `component_id`.
+
+```php
+$incident->component_status = 2;
+$incident->save();
+```
+
+```php
+$incidentUpdate->component_status = 3;
+$incidentUpdate->save();
+```
+
 ## Deleting Cachet elements
 
 To delete a Cachet element from your Cachet install, you simply need to call the `delete()` method on the appropriate Cachet element object.
